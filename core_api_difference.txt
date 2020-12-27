@@ -1,0 +1,94 @@
+Added Enum AbilityFacingMode
+	Added Value NONE: 0
+	Added Value MOVEMENT: 1
+	Added Value AIM: 2
+Added Enum AbilityPhase
+	Added Value READY: 0
+	Added Value CAST: 1
+	Added Value EXECUTE: 2
+	Added Value RECOVERY: 3
+	Added Value COOLDOWN: 4
+Added Enum BroadcastEventResultCode
+	Added Value SUCCESS: 0
+	Added Value FAILURE: 1
+	Added Value EXCEEDED_SIZE_LIMIT: 2
+	Added Value EXCEEDED_RATE_WARNING_LIMIT: 3
+	Added Value EXCEEDED_RATE_LIMIT: 4
+Added Enum Collision
+	Added Value INHERIT: 0
+	Added Value FORCE_ON: 1
+	Added Value FORCE_OFF: 2
+Added Enum DamageReason
+	Added Value UNKNOWN: 0
+	Added Value COMBAT: 1
+	Added Value FRIENDLY_FIRE: 2
+	Added Value MAP: 3
+	Added Value NPC: 4
+Added Enum FacingMode
+	Added Value FACE_AIM_WHEN_ACTIVE: 0
+	Added Value FACE_AIM_ALWAYS: 1
+	Added Value FACE_MOVEMENT: 2
+Added Enum LeaderboardType
+	Added Value GLOBAL: 0
+	Added Value DAILY: 1
+	Added Value WEEKLY: 2
+	Added Value MONTHLY: 3
+Added Enum LookControlMode
+	Added Value NONE: 0
+	Added Value RELATIVE: 1
+	Added Value LOOK_AT_CURSOR: 2
+Added Enum MovementControlMode
+	Added Value NONE: 0
+	Added Value LOOK_RELATIVE: 1
+	Added Value VIEW_RELATIVE: 2
+	Added Value FACING_RELATIVE: 3
+	Added Value FIXED_AXES: 4
+Added Enum MovementMode
+	Added Value NONE: 0
+	Added Value WALKING: 1
+	Added Value FALLING: 3
+	Added Value SWIMMING: 4
+	Added Value FLYING: 5
+	Added Value SLIDING: 6
+Added Enum NetReferenceType
+	Added Value LEADERBOARD: 1
+	Added Value SHARED_STORAGE: 2
+	Added Value CREATOR_PERK: 3
+	Added Value UNKNOWN: 0
+Added Enum RotationMode
+	Added Value CAMERA: 0
+	Added Value NONE: 1
+	Added Value LOOK_ANGLE: 2
+Added Enum StorageResultCode
+	Added Value SUCCESS: 0
+	Added Value FAILURE: 2
+	Added Value STORAGE_DISABLED: 1
+	Added Value EXCEEDED_SIZE_LIMIT: 3
+Added Enum TaskStatus
+	Added Value UNINITIALIZED: 0
+	Added Value SCHEDULED: 1
+	Added Value RUNNING: 2
+	Added Value COMPLETED: 3
+	Added Value YIELDED: 4
+	Added Value FAILED: 5
+	Added Value CANCELED: 6
+	Added Value BLOCKED: 7
+Added Enum TextJustify
+	Added Value LEFT: 0
+	Added Value CENTER: 1
+	Added Value RIGHT: 2
+Added Enum UIPivot
+	Added Value TOP_LEFT: 0
+	Added Value TOP_CENTER: 1
+	Added Value TOP_RIGHT: 2
+	Added Value MIDDLE_LEFT: 3
+	Added Value MIDDLE_CENTER: 4
+	Added Value MIDDLE_RIGHT: 5
+	Added Value BOTTOM_LEFT: 6
+	Added Value BOTTOM_CENTER: 7
+	Added Value BOTTOM_RIGHT: 8
+	Added Value CUSTOM: 9
+Added Enum Visibility
+	Added Value INHERIT: 0
+	Added Value FORCE_ON: 1
+	Added Value FORCE_OFF: 2
