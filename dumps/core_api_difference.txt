@@ -1,3 +1,6 @@
+Changed Class Ability
+	Added StaticFunction AbilityTarget Ability.GetTargetData()
+
 Added Namespace World
 	Added StaticFunction CoreObject World.GetRootObject()
 	Added StaticFunction CoreObject World.FindObjectById(string id)

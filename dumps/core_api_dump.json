@@ -145,19 +145,6 @@
 			],
 			"MemberFunctions": [
 				{
-					"Name": "GetTargetData",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "AbilityTarget"
-								}
-							],
-							"Parameters": []
-						}
-					]
-				},
-				{
 					"Name": "SetTargetData",
 					"Signatures": [
 						{

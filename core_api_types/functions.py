@@ -2,7 +2,8 @@ def GetParameterFormat(signature):
 	return "(" + (", ").join(
 			("[{} {}]" if "IsOptional" in parameter else "{} {}").format(
 				parameter["Type"] if "Type" in parameter else "void",
-				parameter["Name"]) for parameter in signature["Parameters"]
+				parameter["Name"] if "Name" in parameter else "_")
+				for parameter in signature["Parameters"]
 			) + ")"
 	
 	'''parameterFormat = "("

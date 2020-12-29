@@ -1,7 +1,8 @@
 import json
 from urllib.request import urlopen
-import core_api_types.enums as core_enums
+import core_api_types.classes as core_classes
 import core_api_types.namespaces as core_namespaces
+import core_api_types.enums as core_enums
 
 
 PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
@@ -52,6 +53,14 @@ def main():
 	oldJsonText = get_file_contents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
+	# DIFFERENCES IN CLASSES
+	classDifferences = core_classes.GetDifferences(newJsonData, oldJsonData)
+	classSequence = []
+	for classDifference in classDifferences:
+		classSequence.append(classDifference + "\n")
+	if len(classSequence) >= 1:
+		classSequence.append("\n")
+
 	# DIFFERENCES IN NAMESPACES
 	namespaceDifferences = core_namespaces.GetDifferences(newJsonData, oldJsonData)
 	namespaceSequence = []
@@ -71,7 +80,7 @@ def main():
 	differencesTextFile.write("")
 	
 	# Write the sequences collected above
-	differencesTextFile.writelines(namespaceSequence + enumSequence)
+	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
 
 	# Close the differences text file
 	differencesTextFile.close()

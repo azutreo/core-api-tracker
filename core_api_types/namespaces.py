@@ -1,49 +1,45 @@
 import json
-import core_api_types.functions as functions
+import core_api_types.functions as core_functions
 
 
 def AddNamespace(differences: list, namespaceName: str):
 	differences.append("Added Namespace " + namespaceName)
-
-
 def RemoveNamespace(differences: list, namespaceName: str):
 	differences.append("Removed Namespace " + namespaceName)
-
-
 def ChangeNamespace(differences: list, namespaceName: str):
 	differences.append("Changed Namespace " + namespaceName)
 
-
-def AddStaticFunction(differences: list, returnType: str, namespaceName: str, staticFunctionName: str, parameterFormat: str):
-	differences.append("\tAdded " + "StaticFunction " + returnType + " " + namespaceName + "." + staticFunctionName + parameterFormat)
-
-
-def RemoveStaticFunction(differences: list, returnType: str, namespaceName: str, staticFunctionName: str, parameterFormat: str):
-	differences.append("\tRemoved " + "StaticFunction " + returnType + " " + namespaceName + "." + staticFunctionName + parameterFormat)
+def AddStaticFunction(differences: list, returnType: str, namespaceName: str, functionName: str, parameterFormat: str):
+	differences.append("\tAdded " + "StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
+def RemoveStaticFunction(differences: list, returnType: str, namespaceName: str, functionName: str, parameterFormat: str):
+	differences.append("\tRemoved " + "StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
 
 
 def GetNamespaceByName(namespaces: list, namespaceName: str):
-	for enum in namespaces["Namespaces"]:
-		if enum["Name"] == namespaceName:
-			return enum
+	for namespace in namespaces["Namespaces"]:
+		if namespace["Name"] == namespaceName:
+			return namespace
 
 
-def GetStaticFunctionByName(namespace: dict, staticFunctionName: str):
+def GetStaticFunctionByName(namespace: dict, functionName: str):
 	for staticFunction in namespace["StaticFunctions"]:
-		if staticFunction["Name"] == staticFunctionName:
+		if staticFunction["Name"] == functionName:
 			return staticFunction
 
 
-def AddAllSignatures(differences: list, signatures: dict, namespaceName: str, staticFunctionName: str, addedOrRemoved: bool):
-	for signature in signatures:
-		parameterFormat = functions.GetParameterFormat(signature)
-		returnType = functions.GetReturnType(signature["Returns"])
-		
-		if addedOrRemoved:
-			AddStaticFunction(differences, returnType, namespaceName, staticFunctionName, parameterFormat)
-		else:
-			RemoveStaticFunction(differences, returnType, namespaceName, staticFunctionName, parameterFormat)
+def AddSignature(differences, signature, namespaceName: str, functionName: str, addedOrRemoved: bool):
+	parameterFormat = core_functions.GetParameterFormat(signature)
+	returnType = core_functions.GetReturnType(signature["Returns"])
+	
+	if addedOrRemoved:
+		AddStaticFunction(differences, returnType, namespaceName, functionName, parameterFormat)
+	else:
+		RemoveStaticFunction(differences, returnType, namespaceName, functionName, parameterFormat)
 
+
+def AddAllSignatures(differences: list, signatures: dict, namespaceName: str, functionName: str, addedOrRemoved: bool):
+	for signature in signatures:
+		AddSignature(differences, signature, namespaceName, functionName, addedOrRemoved)
 
 def AddAllStaticFunctions(differences: list, namespace: dict, addedOrRemoved: bool):
 	for staticFunction in namespace["StaticFunctions"]:
@@ -79,13 +75,7 @@ def CompareToOtherList(differences: list, namespace: dict, otherList: list, adde
 						wasChanged = True
 						ChangeNamespace(differences, namespace["Name"])
 					
-					parameterFormat = functions.GetParameterFormat(signature)
-					returnType = functions.GetReturnType(signature["Returns"])
-					
-					if addedOrRemoved:
-						AddStaticFunction(differences, returnType, namespace["Name"], staticFunction["Name"], parameterFormat)
-					else:
-						RemoveStaticFunction(differences, returnType, namespace["Name"], staticFunction["Name"], parameterFormat)
+					AddSignature(differences, signature, namespace["Name"], staticFunction["Name"], addedOrRemoved)
 			else:
 				if not wasChanged:
 					wasChanged = True
@@ -97,8 +87,8 @@ def CompareToOtherList(differences: list, namespace: dict, otherList: list, adde
 
 
 def CompareLists(differences: list, list1: list, list2: list, addedOrRemoved: bool):
-	for enum in list1["Namespaces"]:
-		CompareToOtherList(differences, enum, list2, addedOrRemoved)
+	for namespace in list1["Namespaces"]:
+		CompareToOtherList(differences, namespace, list2, addedOrRemoved)
 
 
 def GetDifferences(list1: list, list2: list):

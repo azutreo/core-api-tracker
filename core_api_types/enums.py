@@ -3,21 +3,14 @@ import json
 
 def AddEnum(differences: list, enumName: str):
 	differences.append("Added Enum " + enumName)
-
-
 def RemoveEnum(differences: list, enumName: str):
 	differences.append("Removed Enum " + enumName)
-
-
 def ChangeEnum(differences: list, enumName: str):
 	differences.append("Changed Enum " + enumName)
-
 
 def AddEnumValue(differences: list, value: dict):
 	differences.append("\tAdded Value "
 		+ value["Name"] + ": " + str(value["Value"]))
-
-
 def RemoveEnumValue(differences: list, value: dict):
 	differences.append("\tRemoved Value "
 		+ value["Name"] + ": " + str(value["Value"]))
@@ -55,7 +48,7 @@ def CompareToOtherList(differences: list, enum: dict, otherList: list, addedOrRe
 	otherEnum = GetEnumByName(otherList, enum["Name"])
 	if otherEnum:
 		wasChanged = False
-		
+
 		for value in enum["Values"]:
 			otherValue = GetEnumValueByName(otherEnum, value["Name"])
 			if otherValue:
