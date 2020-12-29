@@ -1,13 +1,14 @@
 import json
 from urllib.request import urlopen
-import core_enum
+import core_api_types.enum as core_enum
+import core_api_types_old.core_namespace as core_namespace
 
 
 PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 
-FILE_DUMP_TEXT = "core_api_dump.txt"
-FILE_DUMP_JSON = "core_api_dump.json"
-FILE_DIFFERENCE_TEXT = "core_api_difference.txt"
+FILE_DUMP_TEXT = "dumps/core_api_dump.txt"
+FILE_DUMP_JSON = "dumps/core_api_dump.json"
+FILE_DIFFERENCE_TEXT = "dumps/core_api_difference.txt"
 
 
 def get_file_contents(filename):
@@ -51,18 +52,26 @@ def main():
 	oldJsonText = get_file_contents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
+	# DIFFERENCES IN NAMESPACES
+	namespaceDifferences = core_namespace.get_differences(newJsonData, oldJsonData)
+	namespaceSequence = []
+	for namespaceDifference in namespaceDifferences:
+		namespaceSequence.append(namespaceDifference + "\n")
+	if len(namespaceSequence) >= 1:
+		namespaceSequence.append("\n")
+
 	# DIFFERENCES IN ENUMS
-	enumDifferences = core_enum.get_differences(newJsonData, oldJsonData)
+	enumDifferences = core_enum.GetDifferences(newJsonData, oldJsonData)
 	enumSequence = []
 	for enumDifference in enumDifferences:
-		enumSequence.append("%s %s %s\n" % (enumDifference["difference"], enumDifference["type"], enumDifference["value"]))
+		enumSequence.append(enumDifference + "\n")
 
 	# Begin the differences file
 	differencesTextFile = open(FILE_DIFFERENCE_TEXT, "w")
 	differencesTextFile.write("")
 	
 	# Write the sequences collected above
-	differencesTextFile.writelines(enumSequence)
+	differencesTextFile.writelines(namespaceSequence + enumSequence)
 
 	# Close the differences text file
 	differencesTextFile.close()

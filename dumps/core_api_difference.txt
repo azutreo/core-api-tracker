@@ -1,0 +1,4 @@
+Added Enum Visibility
+	Added Value INHERIT: 0
+	Added Value FORCE_ON: 1
+	Added Value FORCE_OFF: 2

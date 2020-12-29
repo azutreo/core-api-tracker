@@ -46,4 +46,31 @@ def get_differences(newJson, oldJson):
 			for value in enum["Values"]:
 				add("\tAdded", "Value", value["Name"] + ": " + str(value["Value"]))
 
+	for enum in oldJson["Enums"]:
+		if not newJson["Enums"]:
+			add("Removed", "Enum", enum["Name"])
+
+			for value in enum["Values"]:
+				add("\tRemoved", "Value", value["Name"] + ": " + str(value["Value"]))
+
+			continue
+
+		newEnum = get_enum(newJson, enum["Name"])
+		if newEnum:
+			for value in enum["Values"]:
+				newValue = get_enum_value(newJson, enum["Name"], value["Name"])
+
+				wasChanged = False
+				if not newValue:
+					if not wasChanged:
+						add("Changed", "Enum", enum["Name"])
+						wasChanged = True
+
+					add("\tRemoved", "Value", value["Name"] + ": " + str(value["Value"]))
+		else:
+			add("Removed", "Enum", enum["Name"])
+
+			for value in enum["Values"]:
+				add("\tRemoved", "Value", value["Name"] + ": " + str(value["Value"]))
+
 	return differences
