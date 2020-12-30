@@ -1,0 +1,21 @@
+[color=#e0e0e0]**Changed**[/color] [color=#1976d2]**Class**[/color] Player
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] Player.[color=#ffd54f]perkChangedEvent[/color]<[color=#a1887f]Player[/color], [color=#a1887f]NetReference[/color]>
+[color=#e0e0e0]**Changed**[/color] [color=#1976d2]**Class**[/color] Player
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]bool[/color] Player:[color=#f48fb1]HasPerk[/color]([color=#a1887f]NetReference[/color] [color=#a5d6a7]perkReference[/color])
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]integer[/color] Player:[color=#f48fb1]GetPerkCount[/color]([color=#a1887f]NetReference[/color] [color=#a5d6a7]perkReference[/color])
+[color=#4caf50]**Added**[/color] [color=#1976d2]**Class**[/color] UIPerkPurchaseButton
+        [color=#4caf50]**Added**[/color] [color=#80cbc4]**Property**[/color] [color=#a1887f]bool[/color] UIPerkPurchaseButton.[color=#80cbc4]isInteractable[/color] [color=#ff0000]***\[RequiresAuthority\] \[Dynamic\]***[/color]
+        [color=#4caf50]**Added**[/color] [color=#80cbc4]**Property**[/color] [color=#a1887f]string[/color] UIPerkPurchaseButton.[color=#80cbc4]type[/color] [color=#ff0000]***\[ReadOnly\]***[/color]
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] UIPerkPurchaseButton.[color=#ffd54f]clickedEvent[/color]<[color=#a1887f]UIPerkPurchaseButton[/color]>
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] UIPerkPurchaseButton.[color=#ffd54f]pressedEvent[/color]<[color=#a1887f]UIPerkPurchaseButton[/color]>
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] UIPerkPurchaseButton.[color=#ffd54f]releasedEvent[/color]<[color=#a1887f]UIPerkPurchaseButton[/color]>
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] UIPerkPurchaseButton.[color=#ffd54f]hoveredEvent[/color]<[color=#a1887f]UIPerkPurchaseButton[/color]>
+        [color=#4caf50]**Added**[/color] [color=#ffd54f]**Event**[/color] UIPerkPurchaseButton.[color=#ffd54f]unhoveredEvent[/color]<[color=#a1887f]UIPerkPurchaseButton[/color]>
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]void[/color] UIPerkPurchaseButton:[color=#f48fb1]SetPerkReference[/color]([color=#a1887f]NetReference[/color] [color=#a5d6a7]perkReference[/color]) [color=#ff0000]***\[RequiresAuthority\] \[Dynamic\]***[/color]
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]NetReference[/color] UIPerkPurchaseButton:[color=#f48fb1]GetPerkReference[/color]\()
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]bool[/color] UIPerkPurchaseButton:[color=#f48fb1]IsA[/color]([color=#a1887f]string[/color] [color=#a5d6a7]typeName[/color])
+[color=#e0e0e0]**Changed**[/color] [color=#1976d2]**Class**[/color] UIText
+        [color=#4caf50]**Added**[/color] [color=#f48fb1]**MemberFunction**[/color] [color=#a1887f]Vector2[/color] UIText:[color=#f48fb1]ComputeApproximateSize[/color]\()
+
+[color=#e0e0e0]**Changed**[/color] [color=#7b1fa2]**Enum**[/color] NetReferenceType
+        [color=#4caf50]**Added**[/color] [color=#ba68c8]**Value**[/color] [color=#e1bee7]CREATOR_PERK[/color][color=#9e9e9e]: 3[/color]

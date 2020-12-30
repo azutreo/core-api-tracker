@@ -11,6 +11,27 @@ FILE_DUMP_TEXT = "dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "dumps/core_api_dump.json"
 FILE_DIFFERENCE_TEXT = "dumps/core_api_difference.txt"
 
+KEY = '''\n\n[color=#e0e0e0]**Changed**[/color]
+[color=#4caf50]**Added**[/color]
+[color=#f44336]**Removed**[/color]
+
+[color=#1976d2]**Class**[/color]
+[color=#80cbc4]**Property**[/color]
+[color=#ffd54f]**Event**[/color]
+[color=#f48fb1]**MemberFunction**[/color]
+[color=#42a5f5]**Constructor**[/color]
+[color=#9fa8da]**Constant**[/color]
+[color=#f48fb1]**StaticFunction**[/color]
+[color=#ff0000]***\[Tag\]***[/color]
+[color=#c8e6c9]*Parameter*[/color]
+[color=#795548]*Type*[/color]
+
+[color=#ad1457]**Namespace**[/color]
+[color=#f48fb1]**StaticFunction**[/color]
+
+[color=#7b1fa2]**Enum**[/color]
+[color=#ba68c8]**Value**[/color] [color=#e1bee7]VALUE[/color][color=#9e9e9e]: NUM[/color]'''
+
 
 def get_file_contents(filename):
 	file = open(filename, "r")
@@ -80,7 +101,7 @@ def main():
 	differencesTextFile.write("")
 	
 	# Write the sequences collected above
-	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
+	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence + [KEY])
 
 	# Close the differences text file
 	differencesTextFile.close()
