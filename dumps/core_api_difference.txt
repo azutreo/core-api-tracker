@@ -1,16 +1,12 @@
-Changed Class Ability
-	Added StaticFunction AbilityTarget Ability.GetTargetData()
+Changed Class Player
+	Added MemberFunction bool Player:HasPerk(NetReference perkReference)
+	Added MemberFunction integer Player:GetPerkCount(NetReference perkReference)
+Added Class UIPerkPurchaseButton
+	Added MemberFunction void UIPerkPurchaseButton:SetPerkReference(NetReference perkReference)
+	Added MemberFunction NetReference UIPerkPurchaseButton:GetPerkReference()
+	Added MemberFunction bool UIPerkPurchaseButton:IsA(string typeName)
+Changed Class UIText
+	Added MemberFunction Vector2 UIText:ComputeApproximateSize()
 
-Added Namespace World
-	Added StaticFunction CoreObject World.GetRootObject()
-	Added StaticFunction CoreObject World.FindObjectById(string id)
-	Added StaticFunction CoreObject World.FindObjectByName(string name)
-	Added StaticFunction Array<CoreObject> World.FindObjectsByName(string name)
-	Added StaticFunction Array<CoreObject> World.FindObjectsByType(string typeName)
-	Added StaticFunction CoreObject World.SpawnAsset(string assetId, [table optionalParameters])
-	Added StaticFunction HitResult World.Raycast(Vector3 startPosition, Vector3 endPosition, [table optionalParameters])
-
-Added Enum Visibility
-	Added Value INHERIT: 0
-	Added Value FORCE_ON: 1
-	Added Value FORCE_OFF: 2
+Changed Enum NetReferenceType
+	Added Value CREATOR_PERK: 3

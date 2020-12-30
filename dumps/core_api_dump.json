@@ -145,6 +145,19 @@
 			],
 			"MemberFunctions": [
 				{
+					"Name": "GetTargetData",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "AbilityTarget"
+								}
+							],
+							"Parameters": []
+						}
+					]
+				},
+				{
 					"Name": "SetTargetData",
 					"Signatures": [
 						{
@@ -4712,17 +4725,6 @@
 							"Type": "string"
 						}
 					]
-				},
-				{
-					"Name": "perkChangedEvent",
-					"Parameters": [
-						{
-							"Type": "Player"
-						},
-						{
-							"Type": "NetReference"
-						}
-					]
 				}
 			],
 			"MemberFunctions": [
@@ -5301,42 +5303,6 @@
 					],
 					"Tags": [
 						"ServerOnly"
-					]
-				},
-				{
-					"Name": "HasPerk",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "bool"
-								}
-							],
-							"Parameters": [
-								{
-									"Type": "NetReference",
-									"Name": "perkReference"
-								}
-							]
-						}
-					]
-				},
-				{
-					"Name": "GetPerkCount",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "integer"
-								}
-							],
-							"Parameters": [
-								{
-									"Type": "NetReference",
-									"Name": "perkReference"
-								}
-							]
-						}
 					]
 				},
 				{
@@ -8325,120 +8291,6 @@
 			]
 		},
 		{
-			"Name": "UIPerkPurchaseButton",
-			"BaseType": "UIControl",
-			"Properties": [
-				{
-					"Name": "isInteractable",
-					"Type": "bool",
-					"Tags": [
-						"RequiresAuthority",
-						"Dynamic"
-					]
-				},
-				{
-					"Name": "type",
-					"Type": "string",
-					"Tags": [
-						"ReadOnly"
-					]
-				}
-			],
-			"Events": [
-				{
-					"Name": "clickedEvent",
-					"Parameters": [
-						{
-							"Type": "UIPerkPurchaseButton"
-						}
-					]
-				},
-				{
-					"Name": "pressedEvent",
-					"Parameters": [
-						{
-							"Type": "UIPerkPurchaseButton"
-						}
-					]
-				},
-				{
-					"Name": "releasedEvent",
-					"Parameters": [
-						{
-							"Type": "UIPerkPurchaseButton"
-						}
-					]
-				},
-				{
-					"Name": "hoveredEvent",
-					"Parameters": [
-						{
-							"Type": "UIPerkPurchaseButton"
-						}
-					]
-				},
-				{
-					"Name": "unhoveredEvent",
-					"Parameters": [
-						{
-							"Type": "UIPerkPurchaseButton"
-						}
-					]
-				}
-			],
-			"MemberFunctions": [
-				{
-					"Name": "SetPerkReference",
-					"Signatures": [
-						{
-							"Returns": [],
-							"Parameters": [
-								{
-									"Type": "NetReference",
-									"Name": "perkReference"
-								}
-							]
-						}
-					],
-					"Tags": [
-						"RequiresAuthority",
-						"Dynamic"
-					]
-				},
-				{
-					"Name": "GetPerkReference",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "NetReference"
-								}
-							],
-							"Parameters": []
-						}
-					]
-				},
-				{
-					"Name": "IsA",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "bool"
-								}
-							],
-							"Parameters": [
-								{
-									"Type": "string",
-									"Name": "typeName"
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
 			"Name": "UIProgressBar",
 			"BaseType": "UIControl",
 			"Properties": [
@@ -8656,20 +8508,6 @@
 					"Tags": [
 						"RequiresAuthority",
 						"Dynamic"
-					]
-				},
-				{
-					"Name": "ComputeApproximateSize",
-					"Signatures": [
-						{
-							"Returns": [
-								{
-									"Type": "Vector2",
-									"IsOptional": true
-								}
-							],
-							"Parameters": []
-						}
 					]
 				},
 				{
@@ -11210,6 +11048,147 @@
 					]
 				}
 			]
+		},
+		{
+			"Name": "World",
+			"StaticFunctions": [
+				{
+					"Name": "GetRootObject",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "CoreObject"
+								}
+							],
+							"Parameters": []
+						}
+					]
+				},
+				{
+					"Name": "FindObjectById",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "CoreObject"
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "string",
+									"Name": "id"
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "FindObjectByName",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "CoreObject"
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "string",
+									"Name": "name"
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "FindObjectsByName",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "Array<CoreObject>"
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "string",
+									"Name": "name"
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "FindObjectsByType",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "Array<CoreObject>"
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "string",
+									"Name": "typeName"
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "SpawnAsset",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "CoreObject"
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "string",
+									"Name": "assetId"
+								},
+								{
+									"Type": "table",
+									"Name": "optionalParameters",
+									"IsOptional": true
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "Raycast",
+					"Signatures": [
+						{
+							"Returns": [
+								{
+									"Type": "HitResult",
+									"IsOptional": true
+								}
+							],
+							"Parameters": [
+								{
+									"Type": "Vector3",
+									"Name": "startPosition"
+								},
+								{
+									"Type": "Vector3",
+									"Name": "endPosition"
+								},
+								{
+									"Type": "table",
+									"Name": "optionalParameters",
+									"IsOptional": true
+								}
+							]
+						}
+					]
+				}
+			]
 		}
 	],
 	"Enums": [
@@ -11443,10 +11422,6 @@
 					"Value": 2
 				},
 				{
-					"Name": "CREATOR_PERK",
-					"Value": 3
-				},
-				{
 					"Name": "UNKNOWN",
 					"Value": 0
 				}
@@ -11586,6 +11561,23 @@
 				{
 					"Name": "CUSTOM",
 					"Value": 9
+				}
+			]
+		},
+		{
+			"Name": "Visibility",
+			"Values": [
+				{
+					"Name": "INHERIT",
+					"Value": 0
+				},
+				{
+					"Name": "FORCE_ON",
+					"Value": 1
+				},
+				{
+					"Name": "FORCE_OFF",
+					"Value": 2
 				}
 			]
 		}
