@@ -28,8 +28,8 @@ def GetStaticFunctionByName(namespace: dict, functionName: str):
 
 
 def AddSignature(differences, signature, namespaceName: str, functionName: str, addedOrRemoved: bool):
-	parameterFormat = core_functions.GetParameterFormat(signature)
-	returnType = core_functions.GetReturnType(signature["Returns"])
+	parameterFormat = core_functions.GetParameterFormat(signature, "(", ")", False)
+	returnType = core_functions.GetReturnType(signature)
 	
 	if addedOrRemoved:
 		AddStaticFunction(differences, returnType, namespaceName, functionName, parameterFormat)

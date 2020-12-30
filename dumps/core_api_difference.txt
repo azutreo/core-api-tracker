@@ -1,8 +1,17 @@
 Changed Class Player
+	Added Event Player.perkChangedEvent<Player, NetReference>
+Changed Class Player
 	Added MemberFunction bool Player:HasPerk(NetReference perkReference)
 	Added MemberFunction integer Player:GetPerkCount(NetReference perkReference)
 Added Class UIPerkPurchaseButton
-	Added MemberFunction void UIPerkPurchaseButton:SetPerkReference(NetReference perkReference)
+	Added Property bool UIPerkPurchaseButton.isInteractable [RequiresAuthority] [Dynamic]
+	Added Property string UIPerkPurchaseButton.type [ReadOnly]
+	Added Event UIPerkPurchaseButton.clickedEvent<UIPerkPurchaseButton>
+	Added Event UIPerkPurchaseButton.pressedEvent<UIPerkPurchaseButton>
+	Added Event UIPerkPurchaseButton.releasedEvent<UIPerkPurchaseButton>
+	Added Event UIPerkPurchaseButton.hoveredEvent<UIPerkPurchaseButton>
+	Added Event UIPerkPurchaseButton.unhoveredEvent<UIPerkPurchaseButton>
+	Added MemberFunction void UIPerkPurchaseButton:SetPerkReference(NetReference perkReference) [RequiresAuthority] [Dynamic]
 	Added MemberFunction NetReference UIPerkPurchaseButton:GetPerkReference()
 	Added MemberFunction bool UIPerkPurchaseButton:IsA(string typeName)
 Changed Class UIText
