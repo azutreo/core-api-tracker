@@ -1,15 +1,32 @@
 import json
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
-import core_api_types.classes as core_classes
-import core_api_types.namespaces as core_namespaces
-import core_api_types.enums as core_enums
+
+import core_api_types.classes as CoreClasses
+import core_api_types.namespaces as CoreNamespaces
+import core_api_types.enums as CoreEnums
+
+from git import Repo as Repository
 
 
 PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 
 FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
+
+PATH_OF_GIT_REPO = ".git"
+COMMIT_MESSAGE = "Update to Core API: %s"
+
+
+def PushToRepository(datetimeGMT):
+	try:
+		repository = Repository(PATH_OF_GIT_REPO)
+		repository.git.add(update=True)
+		repository.index.commit(COMMIT_MESSAGE.format(datetimeGMT))
+		origin = repository.remote(name='origin')
+		origin.push()
+	except:
+		print("Some error occured while pushing the code")
 
 
 def GetFileContents(filename):
@@ -44,6 +61,7 @@ def Main():
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
+	print(isSame)
 	if isSame:
 		return
 	
@@ -55,7 +73,7 @@ def Main():
 	oldJsonData = json.loads(oldJsonText)
 
 	# DIFFERENCES IN CLASSES
-	classDifferences = core_classes.GetDifferences(newJsonData, oldJsonData)
+	classDifferences = CoreClasses.GetDifferences(newJsonData, oldJsonData)
 	classSequence = []
 	for classDifference in classDifferences:
 		classSequence.append(classDifference + "\n")
@@ -63,7 +81,7 @@ def Main():
 		classSequence.append("\n")
 
 	# DIFFERENCES IN NAMESPACES
-	namespaceDifferences = core_namespaces.GetDifferences(newJsonData, oldJsonData)
+	namespaceDifferences = CoreNamespaces.GetDifferences(newJsonData, oldJsonData)
 	namespaceSequence = []
 	for namespaceDifference in namespaceDifferences:
 		namespaceSequence.append(namespaceDifference + "\n")
@@ -71,7 +89,7 @@ def Main():
 		namespaceSequence.append("\n")
 
 	# DIFFERENCES IN ENUMS
-	enumDifferences = core_enums.GetDifferences(newJsonData, oldJsonData)
+	enumDifferences = CoreEnums.GetDifferences(newJsonData, oldJsonData)
 	enumSequence = []
 	for enumDifference in enumDifferences:
 		enumSequence.append(enumDifference + "\n")
@@ -97,6 +115,9 @@ def Main():
 	newJsonFile = open(FILE_DUMP_JSON, "w+")
 	newJsonFile.write(newJsonText)
 	newJsonFile.close()
+
+	print("?")
+	PushToRepository(datetimeGMT)
 
 
 if __name__ == "__main__":
