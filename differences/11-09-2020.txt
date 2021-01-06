@@ -1,0 +1,30 @@
+Changed Class UIControl
+	Added Property UIPivot UIControl.anchor [RequiresAuthority] [Dynamic]
+	Added Property UIPivot UIControl.dock [RequiresAuthority] [Dynamic]
+Changed Class Vfx
+	Added MemberFunction void Vfx:Play([table  optionalParameters]) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Vfx:Stop([table  optionalParameters]) [RequiresAuthority] [Dynamic]
+Changed Class Vfx
+	Removed MemberFunction void Vfx:Play() [RequiresAuthority] [Dynamic]
+	Removed MemberFunction void Vfx:Stop() [RequiresAuthority] [Dynamic]
+
+Added Namespace Environment
+	Added StaticFunction bool Environment.IsClient()
+	Added StaticFunction bool Environment.IsServer()
+	Added StaticFunction bool Environment.IsMultiplayerPreview()
+	Added StaticFunction bool Environment.IsSinglePlayerPreview()
+	Added StaticFunction bool Environment.IsPreview()
+	Added StaticFunction bool Environment.IsLocalGame()
+	Added StaticFunction bool Environment.IsHostedGame()
+
+Added Enum UIPivot
+	Added Value TOP_LEFT: 0
+	Added Value TOP_CENTER: 1
+	Added Value TOP_RIGHT: 2
+	Added Value MIDDLE_LEFT: 3
+	Added Value MIDDLE_CENTER: 4
+	Added Value MIDDLE_RIGHT: 5
+	Added Value BOTTOM_LEFT: 6
+	Added Value BOTTOM_CENTER: 7
+	Added Value BOTTOM_RIGHT: 8
+	Added Value CUSTOM: 9

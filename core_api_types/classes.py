@@ -196,6 +196,10 @@ def CompareEvents(differences: list, eventList: list, _class: dict, otherClass: 
 def CompareProperties(differences: list, properties: list, _class: dict, otherClass: dict, addedOrRemoved: bool, wasChanged: bool):
 	for property in properties:
 		if ("Properties" not in otherClass) or (property not in otherClass["Properties"]):
+			if not wasChanged:
+				wasChanged = True
+				ChangeClass(differences, _class["Name"])
+			
 			if addedOrRemoved:
 				AddProperty(differences, _class["Name"], property["Type"], property["Name"], property)
 			else:
@@ -207,6 +211,10 @@ def CompareProperties(differences: list, properties: list, _class: dict, otherCl
 def CompareConstants(differences: list, constants: list, _class: dict, otherClass: dict, addedOrRemoved: bool, wasChanged: bool):
 	for constant in constants:
 		if ("Constants" not in otherClass) or (constant not in otherClass["Constants"]):
+			if not wasChanged:
+				wasChanged = True
+				ChangeClass(differences, _class["Name"])
+			
 			if addedOrRemoved:
 				AddConstant(differences, _class["Name"], constant["Type"], constant["Name"], constant)
 			else:

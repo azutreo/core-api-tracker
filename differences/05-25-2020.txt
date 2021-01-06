@@ -1,0 +1,1001 @@
+Added Class Ability
+	Added Property string Ability.actionBinding [ReadOnly]
+	Added Property bool Ability.canActivateWhileDead [ReadOnly]
+	Added Property string Ability.animation [ReadOnly]
+	Added Property bool Ability.canBePrevented [ReadOnly]
+	Added Property AbilityPhaseSettings Ability.castPhaseSettings [ReadOnly]
+	Added Property AbilityPhaseSettings Ability.executePhaseSettings [ReadOnly]
+	Added Property AbilityPhaseSettings Ability.recoveryPhaseSettings [ReadOnly]
+	Added Property AbilityPhaseSettings Ability.cooldownPhaseSettings [ReadOnly]
+	Added Property bool Ability.isEnabled [RequiresAuthority]
+	Added Property Object Ability.owner [RequiresAuthority]
+	Added Property string Ability.type [ReadOnly]
+	Added Event Ability.readyEvent<Ability>
+	Added Event Ability.castEvent<Ability>
+	Added Event Ability.executeEvent<Ability>
+	Added Event Ability.recoveryEvent<Ability>
+	Added Event Ability.cooldownEvent<Ability>
+	Added Event Ability.interruptedEvent<Ability>
+	Added Event Ability.tickEvent<Ability, number>
+	Added MemberFunction AbilityTarget Ability:GetTargetData()
+	Added MemberFunction void Ability:SetTargetData(AbilityTarget target)
+	Added MemberFunction AbilityPhase Ability:GetCurrentPhase()
+	Added MemberFunction number Ability:GetPhaseTimeRemaining()
+	Added MemberFunction void Ability:Interrupt()
+	Added MemberFunction void Ability:Activate()
+	Added MemberFunction bool Ability:IsA(string typeName)
+Added Class AbilityPhaseSettings
+	Added Property number AbilityPhaseSettings.duration [ReadOnly]
+	Added Property bool AbilityPhaseSettings.canMove [ReadOnly]
+	Added Property bool AbilityPhaseSettings.canJump [ReadOnly]
+	Added Property bool AbilityPhaseSettings.canRotate [ReadOnly]
+	Added Property bool AbilityPhaseSettings.preventsOtherAbilities [ReadOnly]
+	Added Property bool AbilityPhaseSettings.isTargetDataUpdated [ReadOnly]
+	Added Property AbilityFacingMode AbilityPhaseSettings.facingMode [ReadOnly]
+	Added Property string AbilityPhaseSettings.type [ReadOnly]
+	Added MemberFunction bool AbilityPhaseSettings:IsA(string typeName)
+Added Class AbilityTarget
+	Added Property Player AbilityTarget.hitPlayer
+	Added Property Object AbilityTarget.hitObject
+	Added Property number AbilityTarget.spreadHalfAngle
+	Added Property integer AbilityTarget.spreadRandomSeed
+	Added Property string AbilityTarget.type [ReadOnly]
+	Added MemberFunction Rotation AbilityTarget:GetOwnerMovementRotation()
+	Added MemberFunction void AbilityTarget:SetOwnerMovementRotation(Rotation rotation)
+	Added MemberFunction Vector3 AbilityTarget:GetAimPosition()
+	Added MemberFunction void AbilityTarget:SetAimPosition(Vector3 worldPosition)
+	Added MemberFunction Vector3 AbilityTarget:GetAimDirection()
+	Added MemberFunction void AbilityTarget:SetAimDirection(Vector3 direction)
+	Added MemberFunction Vector3 AbilityTarget:GetHitPosition()
+	Added MemberFunction void AbilityTarget:SetHitPosition(Vector3 worldPosition)
+	Added MemberFunction HitResult AbilityTarget:GetHitResult()
+	Added MemberFunction void AbilityTarget:SetHitResult(HitResult hitResult)
+	Added MemberFunction bool AbilityTarget:IsA(string typeName)
+	Added Constructor AbilityTarget AbilityTarget.New()
+Added Class AnimatedMesh
+	Added Property string AnimatedMesh.animationStance [ClientOnly]
+	Added Property number AnimatedMesh.animationStancePlaybackRate [ClientOnly]
+	Added Property bool AnimatedMesh.animationStanceShouldLoop [ClientOnly]
+	Added Property number AnimatedMesh.playbackRateMultiplier [ClientOnly]
+	Added Property string AnimatedMesh.type [ReadOnly]
+	Added Event AnimatedMesh.animationEvent<AnimatedMesh, string> [ClientOnly]
+	Added MemberFunction Array<string> AnimatedMesh:GetAnimationNames()
+	Added MemberFunction Array<string> AnimatedMesh:GetAnimationStanceNames()
+	Added MemberFunction Array<string> AnimatedMesh:GetSocketNames()
+	Added MemberFunction Array<string> AnimatedMesh:GetAnimationEventNames(string animationName)
+	Added MemberFunction void AnimatedMesh:AttachCoreObject(CoreObject objectToAttach, string socket) [ClientOnly]
+	Added MemberFunction void AnimatedMesh:PlayAnimation(string animationName, [table  optionalParameters]) [ClientOnly]
+	Added MemberFunction void AnimatedMesh:StopAnimations() [ClientOnly]
+	Added MemberFunction number AnimatedMesh:GetAnimationDuration(string animationName)
+	Added MemberFunction bool AnimatedMesh:IsA(string typeName)
+Added Class AreaLight
+	Added Property number AreaLight.sourceWidth [RequiresAuthority] [Dynamic]
+	Added Property number AreaLight.sourceHeight [RequiresAuthority] [Dynamic]
+	Added Property number AreaLight.barnDoorAngle [RequiresAuthority] [Dynamic]
+	Added Property number AreaLight.barnDoorLength [RequiresAuthority] [Dynamic]
+	Added Property string AreaLight.type [ReadOnly]
+	Added MemberFunction bool AreaLight:IsA(string typeName)
+Added Class Audio
+	Added Property bool Audio.isSpatializationEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool Audio.isAttenuationEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool Audio.isOcclusionEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool Audio.isAutoPlayEnabled [ReadOnly]
+	Added Property bool Audio.isTransient [RequiresAuthority] [Dynamic]
+	Added Property bool Audio.isAutoRepeatEnabled [RequiresAuthority] [Dynamic]
+	Added Property number Audio.pitch [RequiresAuthority] [Dynamic]
+	Added Property number Audio.volume [RequiresAuthority] [Dynamic]
+	Added Property number Audio.radius [RequiresAuthority] [Dynamic]
+	Added Property number Audio.falloff [RequiresAuthority] [Dynamic]
+	Added Property bool Audio.isPlaying [ReadOnly]
+	Added Property number Audio.length [ReadOnly]
+	Added Property number Audio.currentPlaybackTime [ReadOnly]
+	Added Property number Audio.fadeInTime [RequiresAuthority] [Dynamic]
+	Added Property number Audio.fadeOutTime [RequiresAuthority] [Dynamic]
+	Added Property number Audio.startTime [RequiresAuthority] [Dynamic]
+	Added Property string Audio.type [ReadOnly]
+	Added MemberFunction void Audio:Play() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Audio:Stop() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Audio:FadeIn(number time) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Audio:FadeOut(number time) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool Audio:IsA(string typeName)
+Added Class Camera
+	Added Property Player Camera.followPlayer [RequiresAuthority] [Dynamic]
+	Added Property bool Camera.isOrthographic [RequiresAuthority] [Dynamic]
+	Added Property number Camera.fieldOfView [RequiresAuthority] [Dynamic]
+	Added Property number Camera.viewWidth [RequiresAuthority] [Dynamic]
+	Added Property bool Camera.useCameraSocket [RequiresAuthority] [Dynamic]
+	Added Property number Camera.currentDistance [ClientOnly]
+	Added Property bool Camera.isDistanceAdjustable [RequiresAuthority] [Dynamic]
+	Added Property number Camera.minDistance [RequiresAuthority] [Dynamic]
+	Added Property number Camera.maxDistance [RequiresAuthority] [Dynamic]
+	Added Property RotationMode Camera.rotationMode [RequiresAuthority] [Dynamic]
+	Added Property bool Camera.hasFreeControl [RequiresAuthority] [Dynamic]
+	Added Property number Camera.currentPitch [ClientOnly]
+	Added Property number Camera.minPitch [RequiresAuthority] [Dynamic]
+	Added Property number Camera.maxPitch [RequiresAuthority] [Dynamic]
+	Added Property bool Camera.isYawLimited [RequiresAuthority] [Dynamic]
+	Added Property number Camera.currentYaw [ClientOnly]
+	Added Property number Camera.minYaw [RequiresAuthority] [Dynamic]
+	Added Property number Camera.maxYaw [RequiresAuthority] [Dynamic]
+	Added Property number Camera.lerpTime [RequiresAuthority] [Dynamic]
+	Added Property bool Camera.isUsingCameraRotation [RequiresAuthority] [Dynamic]
+	Added Property string Camera.type [ReadOnly]
+	Added MemberFunction Vector3 Camera:GetPositionOffset()
+	Added MemberFunction void Camera:SetPositionOffset(Vector3 positionOffset) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Rotation Camera:GetRotationOffset()
+	Added MemberFunction void Camera:SetRotationOffset(Rotation rotationOffset) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool Camera:IsA(string typeName)
+Added Class Color
+	Added Property number Color.r
+	Added Property number Color.g
+	Added Property number Color.b
+	Added Property number Color.a
+	Added Property string Color.type [ReadOnly]
+	Added MemberFunction Color Color:GetDesaturated(number desaturation)
+	Added MemberFunction bool Color:IsA(string typeName)
+	Added Constructor Color Color.New(Color color)
+	Added Constructor Color Color.New(Vector4 rgbaVector)
+	Added Constructor Color Color.New(Vector3 rgbVector)
+	Added Constructor Color Color.New(number red, number green, number blue, number alpha)
+	Added Constructor Color Color.New(number red, number green, number blue)
+	Added Constructor Color Color.New()
+	Added Constant Color Color.WHITE
+	Added Constant Color Color.GRAY
+	Added Constant Color Color.BLACK
+	Added Constant Color Color.TRANSPARENT
+	Added Constant Color Color.RED
+	Added Constant Color Color.GREEN
+	Added Constant Color Color.BLUE
+	Added Constant Color Color.CYAN
+	Added Constant Color Color.MAGENTA
+	Added Constant Color Color.YELLOW
+	Added Constant Color Color.ORANGE
+	Added Constant Color Color.PURPLE
+	Added Constant Color Color.BROWN
+	Added Constant Color Color.PINK
+	Added Constant Color Color.TAN
+	Added Constant Color Color.RUBY
+	Added Constant Color Color.EMERALD
+	Added Constant Color Color.SAPPHIRE
+	Added Constant Color Color.SILVER
+	Added Constant Color Color.SMOKE
+	Added StaticFunction Color Color.Random()
+	Added StaticFunction Color Color.Lerp(Color from, Color to, number progress)
+Added Class CoreMesh
+	Added Property string CoreMesh.meshAssetId [ReadOnly]
+	Added Property integer CoreMesh.team [RequiresAuthority] [Dynamic]
+	Added Property bool CoreMesh.isTeamColorUsed [RequiresAuthority] [Dynamic]
+	Added Property bool CoreMesh.isTeamCollisionEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool CoreMesh.isEnemyCollisionEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool CoreMesh.isCameraCollisionEnabled [RequiresAuthority] [Dynamic]
+	Added Property string CoreMesh.type [ReadOnly]
+	Added MemberFunction Color CoreMesh:GetColor()
+	Added MemberFunction void CoreMesh:SetColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreMesh:ResetColor() [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool CoreMesh:IsA(string typeName)
+Added Class CoreObject
+	Added Property string CoreObject.name [RequiresAuthority] [Dynamic]
+	Added Property string CoreObject.id [ReadOnly]
+	Added Property bool CoreObject.isVisible [RequiresAuthority] [Dynamic]
+	Added Property Visibility CoreObject.visibility [RequiresAuthority] [Dynamic]
+	Added Property bool CoreObject.isCollidable [RequiresAuthority] [Dynamic]
+	Added Property Collision CoreObject.collision [RequiresAuthority] [Dynamic]
+	Added Property bool CoreObject.isEnabled [RequiresAuthority] [Dynamic]
+	Added Property number CoreObject.lifeSpan [RequiresAuthority] [Dynamic]
+	Added Property bool CoreObject.isStatic [ReadOnly]
+	Added Property bool CoreObject.isNetworked [ReadOnly]
+	Added Property bool CoreObject.isClientOnly [ReadOnly]
+	Added Property bool CoreObject.isServerOnly [ReadOnly]
+	Added Property CoreObject CoreObject.parent [RequiresAuthority] [Dynamic]
+	Added Property string CoreObject.sourceTemplateId [ReadOnly]
+	Added Property string CoreObject.type [ReadOnly]
+	Added Event CoreObject.childAddedEvent<CoreObject, CoreObject>
+	Added Event CoreObject.childRemovedEvent<CoreObject, CoreObject>
+	Added Event CoreObject.descendantAddedEvent<CoreObject, CoreObject>
+	Added Event CoreObject.descendantRemovedEvent<CoreObject, CoreObject>
+	Added Event CoreObject.destroyEvent<CoreObject>
+	Added Event CoreObject.networkedPropertyChangedEvent<CoreObject, string>
+	Added MemberFunction CoreObjectReference CoreObject:GetReference()
+	Added MemberFunction Transform CoreObject:GetTransform()
+	Added MemberFunction void CoreObject:SetTransform(Transform localTransform) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetPosition()
+	Added MemberFunction void CoreObject:SetPosition(Vector3 localPosition) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Rotation CoreObject:GetRotation()
+	Added MemberFunction void CoreObject:SetRotation(Rotation localRotation) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetScale()
+	Added MemberFunction void CoreObject:SetScale(Vector3 localScale) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Transform CoreObject:GetWorldTransform()
+	Added MemberFunction void CoreObject:SetWorldTransform(Transform worldTransform) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetWorldPosition()
+	Added MemberFunction void CoreObject:SetWorldPosition(Vector3 worldPosition) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Rotation CoreObject:GetWorldRotation()
+	Added MemberFunction void CoreObject:SetWorldRotation(Rotation worldRotation) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetWorldScale()
+	Added MemberFunction void CoreObject:SetWorldScale(Vector3 worldScale) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetVelocity()
+	Added MemberFunction void CoreObject:SetVelocity(Vector3 velocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Vector3 CoreObject:GetAngularVelocity()
+	Added MemberFunction void CoreObject:SetAngularVelocity(Vector3 angularVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:SetLocalAngularVelocity(Vector3 localAngularVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Array<CoreObject> CoreObject:GetChildren()
+	Added MemberFunction void CoreObject:AttachToPlayer(Player player, string socketName) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:AttachToLocalView() [RequiresAuthority] [ClientOnly] [Dynamic]
+	Added MemberFunction void CoreObject:Detach() [RequiresAuthority] [Dynamic]
+	Added MemberFunction string CoreObject:GetAttachedToSocketName()
+	Added MemberFunction bool CoreObject:IsVisibleInHierarchy()
+	Added MemberFunction bool CoreObject:IsCollidableInHierarchy()
+	Added MemberFunction bool CoreObject:IsEnabledInHierarchy()
+	Added MemberFunction CoreObject CoreObject:FindAncestorByName(string name)
+	Added MemberFunction CoreObject CoreObject:FindChildByName(string name)
+	Added MemberFunction CoreObject CoreObject:FindDescendantByName(string name)
+	Added MemberFunction Array<CoreObject> CoreObject:FindDescendantsByName(string name)
+	Added MemberFunction CoreObject CoreObject:FindAncestorByType(string typeName)
+	Added MemberFunction CoreObject CoreObject:FindChildByType(string typeName)
+	Added MemberFunction CoreObject CoreObject:FindDescendantByType(string typeName)
+	Added MemberFunction Array<CoreObject> CoreObject:FindDescendantsByType(string typeName)
+	Added MemberFunction CoreObject CoreObject:FindTemplateRoot()
+	Added MemberFunction bool CoreObject:IsAncestorOf(CoreObject coreObject)
+	Added MemberFunction void CoreObject:MoveTo(Vector3 position, number duration, bool isLocalPosition) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:MoveTo(Vector3 worldPosition, number duration) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:MoveContinuous(Vector3 worldVelocity, bool isLocalVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:MoveContinuous(Vector3 worldVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(Player target, number speed, number minimumDistance) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(Player target, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(Player target) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(CoreObject target, number speed, number minimumDistance) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(CoreObject target, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Follow(CoreObject target) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:StopMove() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateTo(Quaternion rotation, number duration, bool isLocalRotation) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateTo(Quaternion worldRotation, number duration) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateTo(Rotation rotation, number duration, bool isLocalRotation) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateTo(Rotation worldRotation, number duration) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Vector3 angularVelocity, bool isLocalAngularVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Vector3 angularVelocity) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Quaternion quaternionSpeed, number multiplier, bool isLocalQuaternionSpeed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Quaternion quaternionSpeed, number multiplier) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Quaternion quaternionSpeed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Rotation rotationSpeed, number multiplier, bool isLocalRotationSpeed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Rotation rotationSpeed, number multiplier) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:RotateContinuous(Rotation rotationSpeed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAt(Vector3 worldPosition) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(Player target, bool isPitchLocked, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(Player target, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(Player target, bool isPitchLocked) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(Player target) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(CoreObject target, bool isPitchLocked, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(CoreObject target, number speed) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(CoreObject target, bool isPitchLocked) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtContinuous(CoreObject target) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtLocalView(bool isPitchLocked) [RequiresAuthority] [ClientOnly] [Dynamic]
+	Added MemberFunction void CoreObject:LookAtLocalView() [RequiresAuthority] [ClientOnly] [Dynamic]
+	Added MemberFunction void CoreObject:StopRotate() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:ScaleTo(Vector3 scale, number duration, bool isScaleLocal) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:ScaleTo(Vector3 worldScale, number duration) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:ScaleContinuous(Vector3 scaleRate, bool isLocalScaleRate) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:ScaleContinuous(Vector3 scaleRate) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:StopScale() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void CoreObject:Destroy() [RequiresAuthority] [Dynamic]
+	Added MemberFunction table CoreObject:GetCustomProperties()
+	Added MemberFunction value, bool CoreObject:GetCustomProperty(string propertyName)
+	Added MemberFunction bool CoreObject:SetNetworkedCustomProperty(string propertyName, value propertyValue)
+	Added MemberFunction bool CoreObject:IsA(string typeName)
+Added Class CoreObjectReference
+	Added Property string CoreObjectReference.id [ReadOnly]
+	Added Property bool CoreObjectReference.isAssigned [ReadOnly]
+	Added Property string CoreObjectReference.type [ReadOnly]
+	Added MemberFunction CoreObject CoreObjectReference:GetObject()
+	Added MemberFunction CoreObject CoreObjectReference:WaitForObject([number  timeout])
+	Added MemberFunction bool CoreObjectReference:IsA(string typeName)
+Added Class Damage
+	Added Property number Damage.amount
+	Added Property DamageReason Damage.reason
+	Added Property Ability Damage.sourceAbility
+	Added Property Player Damage.sourcePlayer
+	Added Property string Damage.type [ReadOnly]
+	Added MemberFunction HitResult Damage:GetHitResult()
+	Added MemberFunction void Damage:SetHitResult(HitResult hitResult)
+	Added MemberFunction bool Damage:IsA(string typeName)
+	Added Constructor Damage Damage.New(number amount)
+	Added Constructor Damage Damage.New()
+Added Class Decal
+	Added Property string Decal.type [ReadOnly]
+	Added MemberFunction bool Decal:IsA(string typeName)
+Added Class Equipment
+	Added Property Player Equipment.owner [ReadOnly]
+	Added Property string Equipment.socket [RequiresAuthority] [RequiresAuthority] [Dynamic]
+	Added Property string Equipment.type [ReadOnly]
+	Added Event Equipment.equippedEvent<Equipment, Player>
+	Added Event Equipment.unequippedEvent<Equipment, Player>
+	Added MemberFunction Array<Ability> Equipment:GetAbilities()
+	Added MemberFunction void Equipment:Equip(Player player) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Equipment:Unequip() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Equipment:AddAbility(Ability ability) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool Equipment:IsA(string typeName)
+Added Class Event
+	Added Property string Event.type [ReadOnly]
+	Added MemberFunction EventListener Event:Connect(function listener, void additionalParameters)
+	Added MemberFunction bool Event:IsA(string typeName)
+Added Class EventListener
+	Added Property bool EventListener.isConnected [ReadOnly]
+	Added Property string EventListener.type [ReadOnly]
+	Added MemberFunction void EventListener:Disconnect()
+	Added MemberFunction bool EventListener:IsA(string typeName)
+Added Class Folder
+	Added Property string Folder.type [ReadOnly]
+	Added MemberFunction bool Folder:IsA(string typeName)
+Added Class HitResult
+	Added Property Object HitResult.other [ReadOnly]
+	Added Property string HitResult.socketName [ReadOnly]
+	Added Property string HitResult.type [ReadOnly]
+	Added MemberFunction Vector3 HitResult:GetImpactPosition()
+	Added MemberFunction Vector3 HitResult:GetImpactNormal()
+	Added MemberFunction Transform HitResult:GetTransform()
+	Added MemberFunction bool HitResult:IsA(string typeName)
+Added Class ImpactData
+	Added Property Object ImpactData.targetObject [ReadOnly]
+	Added Property Projectile ImpactData.projectile [ReadOnly]
+	Added Property Ability ImpactData.sourceAbility [ReadOnly]
+	Added Property Weapon ImpactData.weapon [ReadOnly]
+	Added Property Player ImpactData.weaponOwner [ReadOnly]
+	Added Property bool ImpactData.isHeadshot [ReadOnly]
+	Added Property number ImpactData.travelDistance [ReadOnly]
+	Added Property string ImpactData.type [ReadOnly]
+	Added MemberFunction HitResult ImpactData:GetHitResult()
+	Added MemberFunction Array<HitResult> ImpactData:GetHitResults()
+	Added MemberFunction bool ImpactData:IsA(string typeName)
+Added Class Light
+	Added Property number Light.intensity [RequiresAuthority] [Dynamic]
+	Added Property number Light.attenuationRadius [RequiresAuthority] [Dynamic]
+	Added Property bool Light.isShadowCaster [RequiresAuthority] [Dynamic]
+	Added Property bool Light.hasTemperature [RequiresAuthority] [Dynamic]
+	Added Property number Light.temperature [RequiresAuthority] [Dynamic]
+	Added Property integer Light.team [RequiresAuthority] [Dynamic]
+	Added Property bool Light.isTeamColorUsed [RequiresAuthority] [Dynamic]
+	Added Property string Light.type [ReadOnly]
+	Added MemberFunction Color Light:GetColor()
+	Added MemberFunction void Light:SetColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool Light:IsA(string typeName)
+Added Class NetworkContext
+	Added Property string NetworkContext.type [ReadOnly]
+	Added MemberFunction bool NetworkContext:IsA(string typeName)
+Added Class Object
+	Added Property table Object.serverUserData [ServerOnly]
+	Added Property table Object.clientUserData [ClientOnly]
+	Added Property string Object.type [ReadOnly]
+	Added MemberFunction bool Object:IsA(string typeName)
+	Added StaticFunction bool Object.IsValid(value object)
+Added Class Player
+	Added Property string Player.id [ReadOnly]
+	Added Property string Player.name [ServerOnly]
+	Added Property integer Player.team [ServerOnly]
+	Added Property number Player.hitPoints [ServerOnly]
+	Added Property number Player.maxHitPoints [ServerOnly]
+	Added Property integer Player.kills [ServerOnly]
+	Added Property integer Player.deaths [ServerOnly]
+	Added Property bool Player.isDead [ReadOnly]
+	Added Property number Player.mass [ReadOnly]
+	Added Property bool Player.isAccelerating [ReadOnly]
+	Added Property bool Player.isCrouching [ReadOnly]
+	Added Property bool Player.isFlying [ReadOnly]
+	Added Property bool Player.isGrounded [ReadOnly]
+	Added Property bool Player.isJumping [ReadOnly]
+	Added Property bool Player.isMounted [ReadOnly]
+	Added Property bool Player.isSwimming [ReadOnly]
+	Added Property bool Player.isWalking [ReadOnly]
+	Added Property bool Player.isSliding [ReadOnly]
+	Added Property number Player.maxWalkSpeed [ServerOnly]
+	Added Property number Player.stepHeight [ServerOnly]
+	Added Property number Player.maxAcceleration [ServerOnly]
+	Added Property number Player.brakingDecelerationFalling [ServerOnly]
+	Added Property number Player.brakingDecelerationWalking [ServerOnly]
+	Added Property number Player.groundFriction [ServerOnly]
+	Added Property number Player.brakingFrictionFactor [ServerOnly]
+	Added Property number Player.walkableFloorAngle [ServerOnly]
+	Added Property number Player.lookSensitivity [ClientOnly] [ClientOnly]
+	Added Property string Player.animationStance [ServerOnly]
+	Added Property FacingMode Player.currentFacingMode [ReadOnly]
+	Added Property FacingMode Player.desiredFacingMode [ServerOnly]
+	Added Property integer Player.maxJumpCount [ServerOnly]
+	Added Property number Player.jumpVelocity [ServerOnly]
+	Added Property number Player.gravityScale [ServerOnly]
+	Added Property number Player.maxSwimSpeed [ServerOnly]
+	Added Property number Player.touchForceFactor [ServerOnly]
+	Added Property bool Player.isCrouchEnabled [ServerOnly]
+	Added Property number Player.buoyancy [ServerOnly]
+	Added Property bool Player.isVisibleToSelf [ClientOnly]
+	Added Property number Player.spreadModifier
+	Added Property number Player.currentSpread [ReadOnly] [ClientOnly]
+	Added Property bool Player.canMount [ServerOnly]
+	Added Property bool Player.shouldDismountWhenDamaged [ServerOnly]
+	Added Property MovementControlMode Player.movementControlMode [ServerOnly]
+	Added Property LookControlMode Player.lookControlMode [ServerOnly]
+	Added Property number Player.currentRotationRate [ReadOnly]
+	Added Property number Player.defaultRotationRate [ServerOnly]
+	Added Property string Player.type [ReadOnly]
+	Added Event Player.damagedEvent<Player, Damage>
+	Added Event Player.diedEvent<Player, Damage>
+	Added Event Player.respawnedEvent<Player>
+	Added Event Player.bindingPressedEvent<Player, string>
+	Added Event Player.bindingReleasedEvent<Player, string>
+	Added Event Player.resourceChangedEvent<Player, string, integer>
+	Added Event Player.movementModeChangedEvent<Player, MovementMode, MovementMode>
+	Added Event Player.animationEvent<Player, string> [ClientOnly]
+	Added MemberFunction Transform Player:GetWorldTransform()
+	Added MemberFunction void Player:SetWorldTransform(Transform worldTransform) [ServerOnly]
+	Added MemberFunction Vector3 Player:GetWorldPosition()
+	Added MemberFunction void Player:SetWorldPosition(Vector3 worldPosition) [ServerOnly]
+	Added MemberFunction Rotation Player:GetWorldRotation()
+	Added MemberFunction void Player:SetWorldRotation(Rotation worldRotation) [ServerOnly]
+	Added MemberFunction Vector3 Player:GetWorldScale()
+	Added MemberFunction void Player:SetWorldScale(Vector3 worldScale) [ServerOnly]
+	Added MemberFunction Vector3 Player:GetVelocity()
+	Added MemberFunction Array<Ability> Player:GetAbilities()
+	Added MemberFunction Array<Equipment> Player:GetEquipment()
+	Added MemberFunction Array<CoreObject> Player:GetAttachedObjects()
+	Added MemberFunction void Player:AddImpulse(Vector3 impulse) [ServerOnly]
+	Added MemberFunction void Player:SetVelocity(Vector3 velocity) [ServerOnly]
+	Added MemberFunction void Player:ResetVelocity() [ServerOnly]
+	Added MemberFunction void Player:ApplyDamage(Damage damage) [ServerOnly]
+	Added MemberFunction void Player:EnableRagdoll(string socketName, number weight) [ServerOnly]
+	Added MemberFunction void Player:EnableRagdoll(string socketName) [ServerOnly]
+	Added MemberFunction void Player:EnableRagdoll() [ServerOnly]
+	Added MemberFunction void Player:DisableRagdoll() [ServerOnly]
+	Added MemberFunction void Player:SetVisibility(bool isVisible, bool includeAttachments) [ServerOnly]
+	Added MemberFunction void Player:SetVisibility(bool isVisible) [ServerOnly]
+	Added MemberFunction bool Player:GetVisibility()
+	Added MemberFunction Vector3 Player:GetViewWorldPosition() [ClientOnly]
+	Added MemberFunction Rotation Player:GetViewWorldRotation() [ClientOnly]
+	Added MemberFunction void Player:Die(Damage damage) [ServerOnly]
+	Added MemberFunction void Player:Die() [ServerOnly]
+	Added MemberFunction void Player:Respawn(Vector3 position, Rotation rotation) [ServerOnly]
+	Added MemberFunction void Player:Respawn() [ServerOnly]
+	Added MemberFunction void Player:ClearResources() [ServerOnly]
+	Added MemberFunction table Player:GetResources()
+	Added MemberFunction integer Player:GetResource(string resourceName)
+	Added MemberFunction integer Player:SetResource(string resourceName, integer amount) [ServerOnly]
+	Added MemberFunction integer Player:AddResource(string resourceName, integer amount) [ServerOnly]
+	Added MemberFunction integer Player:RemoveResource(string resourceName, integer amount) [ServerOnly]
+	Added MemberFunction Array<string> Player:GetResourceNames()
+	Added MemberFunction Array<string> Player:GetResourceNamesStartingWith(string resourceNamePrefix)
+	Added MemberFunction void Player:TransferToGame(string gameId) [ServerOnly]
+	Added MemberFunction void Player:ActivateFlying() [ServerOnly]
+	Added MemberFunction void Player:ActivateWalking() [ServerOnly]
+	Added MemberFunction void Player:SetMounted(bool isMounted) [ServerOnly]
+	Added MemberFunction Camera Player:GetActiveCamera() [ClientOnly]
+	Added MemberFunction Camera Player:GetDefaultCamera() [ClientOnly]
+	Added MemberFunction void Player:SetDefaultCamera(Camera camera) [ClientOnly]
+	Added MemberFunction void Player:SetDefaultCamera(Camera camera, number lerpTime) [ClientOnly]
+	Added MemberFunction Camera Player:GetOverrideCamera() [ClientOnly]
+	Added MemberFunction void Player:SetOverrideCamera(Camera camera) [ClientOnly]
+	Added MemberFunction void Player:SetOverrideCamera(Camera camera, number lerpTime) [ClientOnly]
+	Added MemberFunction void Player:ClearOverrideCamera() [ClientOnly]
+	Added MemberFunction void Player:ClearOverrideCamera(number lerpTime) [ClientOnly]
+	Added MemberFunction Rotation Player:GetLookWorldRotation()
+	Added MemberFunction void Player:SetLookWorldRotation(Rotation newLookRotation) [ClientOnly]
+	Added MemberFunction bool Player:IsA(string typeName)
+Added Class PlayerSettings
+	Added Property string PlayerSettings.type [ReadOnly]
+	Added MemberFunction void PlayerSettings:ApplyToPlayer(Player player) [ServerOnly]
+	Added MemberFunction bool PlayerSettings:IsA(string typeName)
+Added Class PlayerStart
+	Added Property integer PlayerStart.team [ServerOnly] [Dynamic]
+	Added Property string PlayerStart.type [ReadOnly]
+	Added MemberFunction bool PlayerStart:IsA(string typeName)
+Added Class PointLight
+	Added Property bool PointLight.hasNaturalFalloff [RequiresAuthority] [Dynamic]
+	Added Property number PointLight.falloffExponent [RequiresAuthority] [Dynamic]
+	Added Property number PointLight.sourceRadius [RequiresAuthority] [Dynamic]
+	Added Property number PointLight.sourceLength [RequiresAuthority] [Dynamic]
+	Added Property string PointLight.type [ReadOnly]
+	Added MemberFunction bool PointLight:IsA(string typeName)
+Added Class Projectile
+	Added Property Ability Projectile.sourceAbility [RequiresAuthority]
+	Added Property bool Projectile.shouldBounceOnPlayers [RequiresAuthority]
+	Added Property bool Projectile.shouldDieOnImpact [RequiresAuthority]
+	Added Property Player Projectile.owner [RequiresAuthority]
+	Added Property number Projectile.speed [RequiresAuthority]
+	Added Property number Projectile.maxSpeed [RequiresAuthority]
+	Added Property number Projectile.gravityScale [RequiresAuthority]
+	Added Property number Projectile.drag [RequiresAuthority]
+	Added Property integer Projectile.bouncesRemaining [RequiresAuthority]
+	Added Property number Projectile.bounciness [RequiresAuthority]
+	Added Property integer Projectile.piercesRemaining [RequiresAuthority]
+	Added Property number Projectile.lifeSpan [RequiresAuthority]
+	Added Property number Projectile.capsuleRadius [RequiresAuthority]
+	Added Property number Projectile.capsuleLength [RequiresAuthority]
+	Added Property Object Projectile.homingTarget [RequiresAuthority]
+	Added Property number Projectile.homingAcceleration [RequiresAuthority]
+	Added Property string Projectile.type [ReadOnly]
+	Added Event Projectile.impactEvent<Projectile, Object, HitResult>
+	Added Event Projectile.lifeSpanEndedEvent<Projectile>
+	Added Event Projectile.homingFailedEvent<Projectile>
+	Added MemberFunction Transform Projectile:GetWorldTransform()
+	Added MemberFunction Vector3 Projectile:GetWorldPosition()
+	Added MemberFunction void Projectile:SetWorldPosition(Vector3 worldPosition) [RequiresAuthority]
+	Added MemberFunction Vector3 Projectile:GetVelocity()
+	Added MemberFunction void Projectile:SetVelocity(Vector3 velocity) [RequiresAuthority]
+	Added MemberFunction void Projectile:Destroy() [RequiresAuthority]
+	Added MemberFunction bool Projectile:IsA(string typeName)
+	Added StaticFunction Projectile Projectile.Spawn(string templateId, Vector3 startPosition, Vector3 direction)
+Added Class Quaternion
+	Added Property number Quaternion.x
+	Added Property number Quaternion.y
+	Added Property number Quaternion.z
+	Added Property number Quaternion.w
+	Added Property string Quaternion.type [ReadOnly]
+	Added MemberFunction Rotation Quaternion:GetRotation()
+	Added MemberFunction Vector3 Quaternion:GetForwardVector()
+	Added MemberFunction Vector3 Quaternion:GetRightVector()
+	Added MemberFunction Vector3 Quaternion:GetUpVector()
+	Added MemberFunction bool Quaternion:IsA(string typeName)
+	Added Constructor Quaternion Quaternion.New(Quaternion quaternion)
+	Added Constructor Quaternion Quaternion.New(Vector3 fromDirection, Vector3 toDirection)
+	Added Constructor Quaternion Quaternion.New(Vector3 axis, number angle)
+	Added Constructor Quaternion Quaternion.New(Rotation rotation)
+	Added Constructor Quaternion Quaternion.New(number x, number y, number z, number w)
+	Added Constructor Quaternion Quaternion.New()
+	Added Constant Quaternion Quaternion.IDENTITY
+	Added StaticFunction Quaternion Quaternion.Slerp(Quaternion from, Quaternion to, number progress)
+Added Class RandomStream
+	Added Property integer RandomStream.seed
+	Added Property string RandomStream.type [ReadOnly]
+	Added MemberFunction integer RandomStream:GetInitialSeed()
+	Added MemberFunction void RandomStream:Reset()
+	Added MemberFunction void RandomStream:Mutate()
+	Added MemberFunction number RandomStream:GetNumber()
+	Added MemberFunction number RandomStream:GetNumber(number min, number max)
+	Added MemberFunction integer RandomStream:GetInteger(integer min, integer max)
+	Added MemberFunction Vector3 RandomStream:GetVector3()
+	Added MemberFunction Vector3 RandomStream:GetVector3FromCone(Vector3 direction, number horizontalHalfAngle, number verticalHalfAngle)
+	Added MemberFunction Vector3 RandomStream:GetVector3FromCone(Vector3 direction, number coneHalfAngle)
+	Added MemberFunction bool RandomStream:IsA(string typeName)
+	Added Constructor RandomStream RandomStream.New(integer seed)
+	Added Constructor RandomStream RandomStream.New()
+Added Class Rotation
+	Added Property number Rotation.x
+	Added Property number Rotation.y
+	Added Property number Rotation.z
+	Added Property string Rotation.type [ReadOnly]
+	Added MemberFunction bool Rotation:IsA(string typeName)
+	Added Constructor Rotation Rotation.New(Vector3 forwardVector, Vector3 upVector)
+	Added Constructor Rotation Rotation.New(Rotation rotation)
+	Added Constructor Rotation Rotation.New(Quaternion quaternion)
+	Added Constructor Rotation Rotation.New(number x, number y, number z)
+	Added Constructor Rotation Rotation.New()
+	Added Constant Rotation Rotation.ZERO
+Added Class Script
+	Added Property table Script.context [ReadOnly]
+	Added Property string Script.type [ReadOnly]
+	Added MemberFunction bool Script:IsA(string typeName)
+Added Class ScriptAsset
+	Added Property string ScriptAsset.name [ReadOnly]
+	Added Property string ScriptAsset.id [ReadOnly]
+	Added Property string ScriptAsset.type [ReadOnly]
+	Added MemberFunction table ScriptAsset:GetCustomProperties()
+	Added MemberFunction value, bool ScriptAsset:GetCustomProperty(string propertyName)
+	Added MemberFunction bool ScriptAsset:IsA(string typeName)
+Added Class SmartAudio
+	Added Property bool SmartAudio.isSpatializationEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool SmartAudio.isAttenuationEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool SmartAudio.isOcclusionEnabled [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.fadeInTime [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.fadeOutTime [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.startTime [RequiresAuthority] [Dynamic]
+	Added Property bool SmartAudio.isAutoPlayEnabled [ReadOnly]
+	Added Property bool SmartAudio.isTransient [RequiresAuthority] [Dynamic]
+	Added Property bool SmartAudio.isAutoRepeatEnabled [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.pitch [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.volume [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.radius [RequiresAuthority] [Dynamic]
+	Added Property number SmartAudio.falloff [RequiresAuthority] [Dynamic]
+	Added Property bool SmartAudio.isPlaying [ReadOnly]
+	Added Property string SmartAudio.type [ReadOnly]
+	Added MemberFunction void SmartAudio:Play() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void SmartAudio:Stop() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void SmartAudio:FadeIn(number _) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void SmartAudio:FadeOut(number _) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool SmartAudio:IsA(string typeName)
+Added Class SmartObject
+	Added Property integer SmartObject.team [RequiresAuthority] [Dynamic]
+	Added Property bool SmartObject.isTeamColorUsed [RequiresAuthority] [Dynamic]
+	Added Property string SmartObject.type [ReadOnly]
+	Added MemberFunction table SmartObject:GetSmartProperties()
+	Added MemberFunction value, bool SmartObject:GetSmartProperty(string propertyName)
+	Added MemberFunction bool SmartObject:SetSmartProperty(string propertyName, value propertyValue) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool SmartObject:IsA(string typeName)
+Added Class SpotLight
+	Added Property bool SpotLight.hasNaturalFalloff [RequiresAuthority] [Dynamic]
+	Added Property number SpotLight.falloffExponent [RequiresAuthority] [Dynamic]
+	Added Property number SpotLight.sourceRadius [RequiresAuthority] [Dynamic]
+	Added Property number SpotLight.sourceLength [RequiresAuthority] [Dynamic]
+	Added Property number SpotLight.innerConeAngle [RequiresAuthority] [Dynamic]
+	Added Property number SpotLight.outerConeAngle [RequiresAuthority] [Dynamic]
+	Added Property string SpotLight.type [ReadOnly]
+	Added MemberFunction bool SpotLight:IsA(string typeName)
+Added Class StaticMesh
+	Added Property bool StaticMesh.isSimulatingDebrisPhysics [RequiresAuthority] [Dynamic]
+	Added Property string StaticMesh.type [ReadOnly]
+	Added MemberFunction bool StaticMesh:IsA(string typeName)
+Added Class Task
+	Added Property number Task.repeatInterval
+	Added Property integer Task.repeatCount
+	Added Property integer Task.id [ReadOnly]
+	Added Property string Task.type [ReadOnly]
+	Added MemberFunction void Task:Cancel()
+	Added MemberFunction TaskStatus Task:GetStatus()
+	Added MemberFunction bool Task:IsA(string typeName)
+	Added StaticFunction Task Task.Spawn(function function, [number  delay])
+	Added StaticFunction Task Task.GetCurrent()
+	Added StaticFunction void Task.Wait([number  delay])
+Added Class Terrain
+	Added Property string Terrain.type [ReadOnly]
+	Added MemberFunction bool Terrain:IsA(string typeName)
+Added Class Transform
+	Added Property string Transform.type [ReadOnly]
+	Added MemberFunction Rotation Transform:GetRotation()
+	Added MemberFunction void Transform:SetRotation(Rotation rotation)
+	Added MemberFunction Vector3 Transform:GetPosition()
+	Added MemberFunction void Transform:SetPosition(Vector3 position)
+	Added MemberFunction Vector3 Transform:GetScale()
+	Added MemberFunction void Transform:SetScale(Vector3 scale)
+	Added MemberFunction Quaternion Transform:GetQuaternion()
+	Added MemberFunction void Transform:SetQuaternion(Quaternion quaternion)
+	Added MemberFunction Vector3 Transform:GetForwardVector()
+	Added MemberFunction Vector3 Transform:GetRightVector()
+	Added MemberFunction Vector3 Transform:GetUpVector()
+	Added MemberFunction Transform Transform:GetInverse()
+	Added MemberFunction Vector3 Transform:TransformPosition(Vector3 position)
+	Added MemberFunction Vector3 Transform:TransformDirection(Vector3 direction)
+	Added MemberFunction bool Transform:IsA(string typeName)
+	Added Constructor Transform Transform.New(Transform transform)
+	Added Constructor Transform Transform.New(Vector3 xAxis, Vector3 yAxis, Vector3 zAxis, Vector3 position)
+	Added Constructor Transform Transform.New(Rotation rotation, Vector3 position, Vector3 scale)
+	Added Constructor Transform Transform.New(Quaternion rotation, Vector3 position, Vector3 scale)
+	Added Constructor Transform Transform.New()
+	Added Constant Transform Transform.IDENTITY
+Added Class Trigger
+	Added Property bool Trigger.isInteractable [RequiresAuthority] [Dynamic]
+	Added Property string Trigger.interactionLabel [RequiresAuthority] [Dynamic]
+	Added Property integer Trigger.team [RequiresAuthority] [Dynamic]
+	Added Property bool Trigger.isTeamCollisionEnabled [RequiresAuthority] [Dynamic]
+	Added Property bool Trigger.isEnemyCollisionEnabled [RequiresAuthority] [Dynamic]
+	Added Property string Trigger.type [ReadOnly]
+	Added Event Trigger.beginOverlapEvent<Trigger, Object>
+	Added Event Trigger.endOverlapEvent<Trigger, Object>
+	Added Event Trigger.interactedEvent<Trigger, Player>
+	Added MemberFunction bool Trigger:IsOverlapping(Object OtherObject)
+	Added MemberFunction Array<Object> Trigger:GetOverlappingObjects()
+	Added MemberFunction bool Trigger:IsA(string typeName)
+Added Class UIButton
+	Added Property string UIButton.text [RequiresAuthority] [Dynamic]
+	Added Property integer UIButton.fontSize [RequiresAuthority] [Dynamic]
+	Added Property bool UIButton.isInteractable [RequiresAuthority] [Dynamic]
+	Added Property string UIButton.type [ReadOnly]
+	Added Event UIButton.clickedEvent<UIButton>
+	Added Event UIButton.pressedEvent<UIButton>
+	Added Event UIButton.releasedEvent<UIButton>
+	Added Event UIButton.hoveredEvent<UIButton>
+	Added Event UIButton.unhoveredEvent<UIButton>
+	Added MemberFunction void UIButton:SetImage(string imageId) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Color UIButton:GetButtonColor()
+	Added MemberFunction void UIButton:SetButtonColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Color UIButton:GetHoveredColor()
+	Added MemberFunction void UIButton:SetHoveredColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Color UIButton:GetPressedColor()
+	Added MemberFunction void UIButton:SetPressedColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Color UIButton:GetDisabledColor()
+	Added MemberFunction void UIButton:SetDisabledColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction Color UIButton:GetFontColor()
+	Added MemberFunction void UIButton:SetFontColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool UIButton:IsA(string typeName)
+Added Class UIContainer
+	Added Property string UIContainer.type [ReadOnly]
+	Added MemberFunction bool UIContainer:IsA(string typeName)
+Added Class UIControl
+	Added Property number UIControl.x [RequiresAuthority] [Dynamic]
+	Added Property number UIControl.y [RequiresAuthority] [Dynamic]
+	Added Property integer UIControl.width [RequiresAuthority] [Dynamic]
+	Added Property integer UIControl.height [RequiresAuthority] [Dynamic]
+	Added Property number UIControl.rotationAngle [RequiresAuthority] [Dynamic]
+	Added Property string UIControl.type [ReadOnly]
+	Added MemberFunction bool UIControl:IsA(string typeName)
+Added Class UIImage
+	Added Property bool UIImage.isTeamColorUsed [RequiresAuthority] [Dynamic]
+	Added Property integer UIImage.team [RequiresAuthority] [Dynamic]
+	Added Property string UIImage.type [ReadOnly]
+	Added MemberFunction Color UIImage:GetColor()
+	Added MemberFunction void UIImage:SetColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void UIImage:SetImage(Player player) [RequiresAuthority] [Dynamic]
+	Added MemberFunction void UIImage:SetImage(string imageId) [RequiresAuthority] [Dynamic]
+	Added MemberFunction string UIImage:GetImage()
+	Added MemberFunction bool UIImage:IsA(string typeName)
+Added Class UIPanel
+	Added Property integer UIPanel.shouldClipChildren [RequiresAuthority] [Dynamic]
+	Added Property string UIPanel.type [ReadOnly]
+	Added MemberFunction bool UIPanel:IsA(string typeName)
+Added Class UIProgressBar
+	Added Property number UIProgressBar.progress [RequiresAuthority] [Dynamic]
+	Added Property string UIProgressBar.type [ReadOnly]
+	Added MemberFunction Color UIProgressBar:GetFillColor()
+	Added MemberFunction void UIProgressBar:SetFillColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool UIProgressBar:IsA(string typeName)
+Added Class UIScrollPanel
+	Added Property string UIScrollPanel.type [ReadOnly]
+	Added MemberFunction bool UIScrollPanel:IsA(string typeName)
+Added Class UIText
+	Added Property string UIText.text [RequiresAuthority] [Dynamic]
+	Added Property integer UIText.fontSize [RequiresAuthority] [Dynamic]
+	Added Property TextJustify UIText.justification [RequiresAuthority] [Dynamic]
+	Added Property bool UIText.shouldWrapText [RequiresAuthority] [Dynamic]
+	Added Property bool UIText.shouldClipText [RequiresAuthority] [Dynamic]
+	Added Property string UIText.type [ReadOnly]
+	Added MemberFunction Color UIText:GetColor()
+	Added MemberFunction void UIText:SetColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool UIText:IsA(string typeName)
+Added Class Vector2
+	Added Property number Vector2.x
+	Added Property number Vector2.y
+	Added Property number Vector2.size [ReadOnly]
+	Added Property number Vector2.sizeSquared [ReadOnly]
+	Added Property string Vector2.type [ReadOnly]
+	Added MemberFunction Vector2 Vector2:GetNormalized()
+	Added MemberFunction bool Vector2:IsA(string typeName)
+	Added Constructor Vector2 Vector2.New(number xy)
+	Added Constructor Vector2 Vector2.New(Vector3 vector)
+	Added Constructor Vector2 Vector2.New(Vector2 vector)
+	Added Constructor Vector2 Vector2.New(number x, number y)
+	Added Constructor Vector2 Vector2.New()
+	Added Constant Vector2 Vector2.ZERO
+	Added Constant Vector2 Vector2.ONE
+	Added StaticFunction Vector2 Vector2.Lerp(Vector2 from, Vector2 to, number progress)
+Added Class Vector3
+	Added Property number Vector3.x
+	Added Property number Vector3.y
+	Added Property number Vector3.z
+	Added Property number Vector3.size [ReadOnly]
+	Added Property number Vector3.sizeSquared [ReadOnly]
+	Added Property string Vector3.type [ReadOnly]
+	Added MemberFunction Vector3 Vector3:GetNormalized()
+	Added MemberFunction bool Vector3:IsA(string typeName)
+	Added Constructor Vector3 Vector3.New(number xyz)
+	Added Constructor Vector3 Vector3.New(Vector4 vector)
+	Added Constructor Vector3 Vector3.New(Vector3 vector)
+	Added Constructor Vector3 Vector3.New(Vector2 xy, number z)
+	Added Constructor Vector3 Vector3.New(number x, number y, number z)
+	Added Constructor Vector3 Vector3.New()
+	Added Constant Vector3 Vector3.ZERO
+	Added Constant Vector3 Vector3.ONE
+	Added Constant Vector3 Vector3.FORWARD
+	Added Constant Vector3 Vector3.UP
+	Added Constant Vector3 Vector3.RIGHT
+	Added StaticFunction Vector3 Vector3.Lerp(Vector3 from, Vector3 to, number progress)
+Added Class Vector4
+	Added Property number Vector4.x
+	Added Property number Vector4.y
+	Added Property number Vector4.z
+	Added Property number Vector4.w
+	Added Property number Vector4.size [ReadOnly]
+	Added Property number Vector4.sizeSquared [ReadOnly]
+	Added Property string Vector4.type [ReadOnly]
+	Added MemberFunction Vector4 Vector4:GetNormalized()
+	Added MemberFunction bool Vector4:IsA(string typeName)
+	Added Constructor Vector4 Vector4.New(Vector2 xy, Vector2 zw)
+	Added Constructor Vector4 Vector4.New(Color color)
+	Added Constructor Vector4 Vector4.New(number xyzw)
+	Added Constructor Vector4 Vector4.New(Vector3 xyz, number w)
+	Added Constructor Vector4 Vector4.New(Vector4 vector)
+	Added Constructor Vector4 Vector4.New(number x, number y, number z, number w)
+	Added Constructor Vector4 Vector4.New()
+	Added Constant Vector4 Vector4.ZERO
+	Added Constant Vector4 Vector4.ONE
+	Added StaticFunction Vector4 Vector4.Lerp(Vector4 from, Vector4 to, number progress)
+Added Class Vfx
+	Added Property string Vfx.type [ReadOnly]
+	Added MemberFunction void Vfx:Play() [RequiresAuthority] [Dynamic]
+	Added MemberFunction void Vfx:Stop() [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool Vfx:IsA(string typeName)
+Added Class Weapon
+	Added Property number Weapon.attackCooldownDuration [ReadOnly]
+	Added Property string Weapon.animationStance [ReadOnly]
+	Added Property integer Weapon.multiShotCount [ReadOnly]
+	Added Property integer Weapon.burstCount [ReadOnly]
+	Added Property number Weapon.shotsPerSecond [ReadOnly]
+	Added Property bool Weapon.shouldBurstStopOnRelease [ReadOnly]
+	Added Property bool Weapon.isHitscan [ReadOnly]
+	Added Property number Weapon.range [ReadOnly]
+	Added Property number Weapon.damage [ReadOnly]
+	Added Property number Weapon.directDamage [ReadOnly]
+	Added Property string Weapon.projectileTemplateId [ReadOnly]
+	Added Property string Weapon.muzzleFlashTemplateId [ReadOnly]
+	Added Property string Weapon.trailTemplateId [ReadOnly]
+	Added Property string Weapon.beamTemplateId [ReadOnly]
+	Added Property string Weapon.impactSurfaceTemplateId [ReadOnly]
+	Added Property string Weapon.impactProjectileTemplateId [ReadOnly]
+	Added Property string Weapon.impactPlayerTemplateId [ReadOnly]
+	Added Property number Weapon.projectileSpeed [ReadOnly]
+	Added Property number Weapon.projectileLifeSpan [ReadOnly]
+	Added Property number Weapon.projectileGravity [ReadOnly]
+	Added Property number Weapon.projectileLength [ReadOnly]
+	Added Property number Weapon.projectileRadius [ReadOnly]
+	Added Property number Weapon.projectileDrag [ReadOnly]
+	Added Property integer Weapon.projectileBounceCount [ReadOnly]
+	Added Property integer Weapon.projectilePierceCount [ReadOnly]
+	Added Property integer Weapon.maxAmmo [ReadOnly]
+	Added Property integer Weapon.currentAmmo [RequiresAuthority] [Dynamic]
+	Added Property string Weapon.ammoType [ReadOnly]
+	Added Property bool Weapon.isAmmoFinite [ReadOnly]
+	Added Property string Weapon.outOfAmmoSoundId [ReadOnly]
+	Added Property string Weapon.reloadSoundId [ReadOnly]
+	Added Property number Weapon.spreadMin [ReadOnly]
+	Added Property number Weapon.spreadMax [ReadOnly]
+	Added Property number Weapon.spreadAperture [ReadOnly]
+	Added Property number Weapon.spreadDecreaseSpeed [ReadOnly]
+	Added Property number Weapon.spreadIncreasePerShot [ReadOnly]
+	Added Property number Weapon.spreadPenaltyPerShot [ReadOnly]
+	Added Property string Weapon.type [ReadOnly]
+	Added Event Weapon.projectileSpawnedEvent<Weapon, Projectile>
+	Added Event Weapon.targetImpactedEvent<Weapon, ImpactData>
+	Added Event Weapon.targetInteractionEvent<ImpactData>
+	Added MemberFunction bool Weapon:HasAmmo()
+	Added MemberFunction void Weapon:Attack(Player targetPlayer)
+	Added MemberFunction void Weapon:Attack(CoreObject targetObject)
+	Added MemberFunction void Weapon:Attack(Vector3 targetWorldPosition)
+	Added MemberFunction void Weapon:Attack()
+	Added MemberFunction bool Weapon:IsA(string typeName)
+Added Class WorldText
+	Added Property string WorldText.text [RequiresAuthority] [Dynamic]
+	Added Property string WorldText.type [ReadOnly]
+	Added MemberFunction Color WorldText:GetColor()
+	Added MemberFunction void WorldText:SetColor(Color color) [RequiresAuthority] [Dynamic]
+	Added MemberFunction bool WorldText:IsA(string typeName)
+
+Added Namespace CoreDebug
+	Added StaticFunction void CoreDebug.DrawLine(Vector3 startPosition, Vector3 endPosition, table parameters)
+	Added StaticFunction void CoreDebug.DrawLine(Vector3 startPosition, Vector3 endPosition)
+	Added StaticFunction void CoreDebug.DrawBox(Vector3 centerPosition, Vector3 scale, table parameters)
+	Added StaticFunction void CoreDebug.DrawBox(Vector3 centerPosition, Vector3 scale)
+	Added StaticFunction void CoreDebug.DrawSphere(Vector3 centerPosition, number radius, table parameters)
+	Added StaticFunction void CoreDebug.DrawSphere(Vector3 centerPosition, number radius)
+	Added StaticFunction string CoreDebug.GetStackTrace()
+	Added StaticFunction string CoreDebug.GetTaskStackTrace()
+	Added StaticFunction string CoreDebug.GetTaskStackTrace(Task task)
+Added Namespace CoreMath
+	Added StaticFunction number CoreMath.Round(number x, [integer  decimals])
+	Added StaticFunction number CoreMath.Lerp(number from, number to, [number  progress])
+	Added StaticFunction number CoreMath.Clamp(number x, [number  min], [number  max])
+Added Namespace CoreString
+	Added StaticFunction ... CoreString.Split(string string)
+	Added StaticFunction ... CoreString.Split(string string, [string  delimiter], [table  optionalParameters])
+	Added StaticFunction ... CoreString.Split(string string, table optionalParameters)
+	Added StaticFunction ... CoreString.Split(string string, string delimiter)
+	Added StaticFunction string CoreString.Join(string delimiter, void strings)
+	Added StaticFunction string CoreString.Trim(string string, void trimmedStrings)
+Added Namespace Events
+	Added StaticFunction EventListener Events.Connect(string eventName, function listener, void additionalParameters)
+	Added StaticFunction EventListener Events.ConnectForPlayer(string eventName, function listener, void additionalParameters)
+	Added StaticFunction void Events.Broadcast(string eventName, void argumentList)
+	Added StaticFunction BroadcastEventResultCode, string Events.BroadcastToServer(string eventName, void argumentList)
+	Added StaticFunction BroadcastEventResultCode, string Events.BroadcastToAllPlayers(string eventName, void argumentList)
+	Added StaticFunction BroadcastEventResultCode, string Events.BroadcastToPlayer(Player player, string eventName, void argumentList)
+Added Namespace Game
+	Added StaticFunction Player Game.GetLocalPlayer()
+	Added StaticFunction Array<Player> Game.GetPlayers([table  optionalParams])
+	Added StaticFunction Array<Player> Game.FindPlayersInCylinder(Vector3 worldPosition, number radius, [table  optionalParams])
+	Added StaticFunction Array<Player> Game.FindPlayersInSphere(Vector3 worldPosition, number radius, [table  optionalParams])
+	Added StaticFunction Player Game.FindNearestPlayer(Vector3 worldPosition, [table  optionalParameters])
+	Added StaticFunction void Game.StartRound()
+	Added StaticFunction void Game.EndRound()
+	Added StaticFunction integer Game.GetTeamScore(integer team)
+	Added StaticFunction void Game.SetTeamScore(integer team, integer score)
+	Added StaticFunction void Game.IncreaseTeamScore(integer team, integer scoreChange)
+	Added StaticFunction void Game.DecreaseTeamScore(integer team, integer scoreChange)
+	Added StaticFunction void Game.ResetTeamScores()
+Added Namespace Storage
+	Added StaticFunction table Storage.GetPlayerData(Player player)
+	Added StaticFunction StorageResultCode, string Storage.SetPlayerData(Player player, table data)
+Added Namespace Teams
+	Added StaticFunction bool Teams.AreTeamsFriendly(integer team1, integer team2)
+	Added StaticFunction bool Teams.AreTeamsEnemies(integer team1, integer team2)
+Added Namespace UI
+	Added StaticFunction void UI.ShowFlyUpText(string text, Vector3 worldPosition, [table  optionalParameters])
+	Added StaticFunction void UI.ShowDamageDirection(CoreObject sourceObject)
+	Added StaticFunction void UI.ShowDamageDirection(Player sourcePlayer)
+	Added StaticFunction void UI.ShowDamageDirection(Vector3 sourceWorldPosition)
+	Added StaticFunction Vector2 UI.GetScreenPosition(Vector3 worldPosition)
+	Added StaticFunction Vector2 UI.GetScreenSize()
+	Added StaticFunction void UI.PrintToScreen(string message, [Color  color])
+	Added StaticFunction Vector2 UI.GetCursorPosition()
+	Added StaticFunction HitResult UI.GetCursorHitResult()
+	Added StaticFunction Vector3 UI.GetCursorPlaneIntersection(Vector3 pointOnPlane, Vector3 planeNormal)
+	Added StaticFunction Vector3 UI.GetCursorPlaneIntersection(Vector3 pointOnPlane)
+	Added StaticFunction bool UI.IsCursorVisible()
+	Added StaticFunction void UI.SetCursorVisible(bool isVisible)
+	Added StaticFunction bool UI.IsCursorLockedToViewport()
+	Added StaticFunction void UI.SetCursorLockedToViewport(bool isLocked)
+	Added StaticFunction bool UI.CanCursorInteractWithUI()
+	Added StaticFunction void UI.SetCanCursorInteractWithUI(bool canInteract)
+	Added StaticFunction bool UI.IsReticleVisible()
+	Added StaticFunction void UI.SetReticleVisible(bool isVisible)
+Added Namespace World
+	Added StaticFunction CoreObject World.GetRootObject()
+	Added StaticFunction CoreObject World.FindObjectById(string id)
+	Added StaticFunction CoreObject World.FindObjectByName(string name)
+	Added StaticFunction Array<CoreObject> World.FindObjectsByName(string name)
+	Added StaticFunction Array<CoreObject> World.FindObjectsByType(string typeName)
+	Added StaticFunction CoreObject World.SpawnAsset(string assetId, [table  optionalParameters])
+	Added StaticFunction HitResult World.Raycast(Vector3 startPosition, Vector3 endPosition, [table  optionalParameters])
+
+Added Enum AbilityFacingMode
+	Added Value NONE: 0
+	Added Value MOVEMENT: 1
+	Added Value AIM: 2
+Added Enum AbilityPhase
+	Added Value READY: 0
+	Added Value CAST: 1
+	Added Value EXECUTE: 2
+	Added Value RECOVERY: 3
+	Added Value COOLDOWN: 4
+Added Enum BroadcastEventResultCode
+	Added Value SUCCESS: 0
+	Added Value FAILURE: 1
+	Added Value EXCEEDED_SIZE_LIMIT: 2
+	Added Value EXCEEDED_RATE_WARNING_LIMIT: 3
+	Added Value EXCEEDED_RATE_LIMIT: 4
+Added Enum Collision
+	Added Value INHERIT: 0
+	Added Value FORCE_ON: 1
+	Added Value FORCE_OFF: 2
+Added Enum DamageReason
+	Added Value UNKNOWN: 0
+	Added Value COMBAT: 1
+	Added Value FRIENDLY_FIRE: 2
+	Added Value MAP: 3
+	Added Value NPC: 4
+Added Enum FacingMode
+	Added Value FACE_AIM_WHEN_ACTIVE: 0
+	Added Value FACE_AIM_ALWAYS: 1
+	Added Value FACE_MOVEMENT: 2
+Added Enum LookControlMode
+	Added Value NONE: 0
+	Added Value RELATIVE: 1
+	Added Value LOOK_AT_CURSOR: 2
+Added Enum MovementControlMode
+	Added Value NONE: 0
+	Added Value LOOK_RELATIVE: 1
+	Added Value VIEW_RELATIVE: 2
+	Added Value FACING_RELATIVE: 3
+	Added Value FIXED_AXES: 4
+Added Enum MovementMode
+	Added Value NONE: 0
+	Added Value WALKING: 1
+	Added Value FALLING: 3
+	Added Value SWIMMING: 4
+	Added Value FLYING: 5
+	Added Value SLIDING: 6
+Added Enum RotationMode
+	Added Value CAMERA: 0
+	Added Value NONE: 1
+	Added Value LOOK_ANGLE: 2
+Added Enum StorageResultCode
+	Added Value SUCCESS: 0
+	Added Value FAILURE: 2
+	Added Value STORAGE_DISABLED: 1
+	Added Value EXCEEDED_SIZE_LIMIT: 3
+Added Enum TaskStatus
+	Added Value UNINITIALIZED: 0
+	Added Value SCHEDULED: 1
+	Added Value RUNNING: 2
+	Added Value COMPLETED: 3
+	Added Value YIELDED: 4
+	Added Value FAILED: 5
+	Added Value CANCELED: 6
+	Added Value BLOCKED: 7
+Added Enum TextJustify
+	Added Value LEFT: 0
+	Added Value CENTER: 1
+	Added Value RIGHT: 2
+Added Enum Visibility
+	Added Value INHERIT: 0
+	Added Value FORCE_ON: 1
+	Added Value FORCE_OFF: 2

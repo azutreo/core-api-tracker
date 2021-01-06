@@ -1,0 +1,22 @@
+Added Class LeaderboardEntry
+	Added Property string LeaderboardEntry.id [ReadOnly]
+	Added Property string LeaderboardEntry.name [ReadOnly]
+	Added Property number LeaderboardEntry.score [ReadOnly]
+	Added Property string LeaderboardEntry.additionalData [ReadOnly]
+	Added Property string LeaderboardEntry.type [ReadOnly]
+	Added MemberFunction bool LeaderboardEntry:IsA(string typeName)
+Added Class NetReference
+	Added Property bool NetReference.isAssigned [ReadOnly]
+	Added Property string NetReference.type [ReadOnly]
+	Added MemberFunction bool NetReference:IsA(string typeName)
+
+Added Namespace Leaderboards
+	Added StaticFunction void Leaderboards.SubmitPlayerScore(NetReference leaderboardReference, Player player, number score, string additionalData)
+	Added StaticFunction table Leaderboards.GetLeaderboard(NetReference leaderboardReference, LeaderboardType leaderboardType)
+	Added StaticFunction bool Leaderboards.HasLeaderboards()
+
+Added Enum LeaderboardType
+	Added Value GLOBAL: 0
+	Added Value DAILY: 1
+	Added Value WEEKLY: 2
+	Added Value MONTHLY: 3

@@ -1,4 +1,5 @@
 import json
+from time import strftime, gmtime, sleep
 from urllib.request import urlopen
 import core_api_types.classes as core_classes
 import core_api_types.namespaces as core_namespaces
@@ -7,33 +8,11 @@ import core_api_types.enums as core_enums
 
 PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 
-FILE_DUMP_TEXT = "dumps/core_api_dump.txt"
-FILE_DUMP_JSON = "dumps/core_api_dump.json"
-FILE_DIFFERENCE_TEXT = "dumps/core_api_difference.txt"
-
-KEY = '''\n\n[color=#e0e0e0]**Changed**[/color]
-[color=#4caf50]**Added**[/color]
-[color=#f44336]**Removed**[/color]
-
-[color=#1976d2]**Class**[/color]
-[color=#80cbc4]**Property**[/color]
-[color=#ffd54f]**Event**[/color]
-[color=#f48fb1]**MemberFunction**[/color]
-[color=#42a5f5]**Constructor**[/color]
-[color=#9fa8da]**Constant**[/color]
-[color=#f48fb1]**StaticFunction**[/color]
-[color=#ff0000]***\[Tag\]***[/color]
-[color=#c8e6c9]*Parameter*[/color]
-[color=#795548]*Type*[/color]
-
-[color=#ad1457]**Namespace**[/color]
-[color=#f48fb1]**StaticFunction**[/color]
-
-[color=#7b1fa2]**Enum**[/color]
-[color=#ba68c8]**Value**[/color] [color=#e1bee7]VALUE[/color][color=#9e9e9e]: NUM[/color]'''
+FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
+FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 
 
-def get_file_contents(filename):
+def GetFileContents(filename):
 	file = open(filename, "r")
 	contents = file.read()
 	file.close()
@@ -41,37 +20,38 @@ def get_file_contents(filename):
 	return contents
 
 
-def is_same(dump):
-	contents = get_file_contents(FILE_DUMP_TEXT)
+def IsSame(dump):
+	contents = GetFileContents(FILE_DUMP_TEXT)
 
 	return dump == contents
 
 
-def write_contents(contents):
-	textDump = open(FILE_DUMP_TEXT, "w")
+def WriteDumpText(contents):
+	textDump = open(FILE_DUMP_TEXT, "w+")
 	textDump.write(contents)
 	textDump.close()
 
 
-def get_json_parsed_data(url):
+def GetJsonParsedData(url):
 	response = urlopen(url)
 	data = response.read().decode("utf-8")
 	return json.loads(data), data
 
 
-def main():
+def Main():
 	# See if the API has changed AT ALL
-	'''response = urlopen(PAGE_LINK)
+	response = urlopen(PAGE_LINK)
 	pageContents = str(response.read())
 
-	if is_same(pageContents):
+	isSame = IsSame(pageContents)
+	if IsSame(pageContents):
 		return
 	
-	write_contents(pageContents)'''
+	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
-	newJsonData, newJsonText = get_json_parsed_data(PAGE_LINK)
-	oldJsonText = get_file_contents(FILE_DUMP_JSON)
+	newJsonData, newJsonText = GetJsonParsedData(PAGE_LINK)
+	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
 	# DIFFERENCES IN CLASSES
@@ -96,21 +76,35 @@ def main():
 	for enumDifference in enumDifferences:
 		enumSequence.append(enumDifference + "\n")
 
+	# Current Time
+	datetimeGMT = strftime("%m-%d-%Y", gmtime())
+
 	# Begin the differences file
-	differencesTextFile = open(FILE_DIFFERENCE_TEXT, "w")
-	differencesTextFile.write("")
+	differencesTextFile = open("differences/" + datetimeGMT + ".txt", "w+")
 	
 	# Write the sequences collected above
-	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence + [KEY])
+	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
 
 	# Close the differences text file
 	differencesTextFile.close()
 
+	# Create a dump into api_dumps
+	newJsonFile = open("api_dumps/" + datetimeGMT + ".json", "w+")
+	newJsonFile.write(newJsonText)
+	newJsonFile.close()
+
 	# Set the "new" to be what was grabbed from online
-	newJsonFile = open(FILE_DUMP_JSON, "w")
+	newJsonFile = open(FILE_DUMP_JSON, "w+")
 	newJsonFile.write(newJsonText)
 	newJsonFile.close()
 
 
 if __name__ == "__main__":
-	main()
+	print("Running program; close to cancel (Ctrl + C if in console)")
+
+	Main()
+	try:
+		while sleep(60):
+			Main()
+	except(KeyboardInterrupt):
+		print("Cancelled program")

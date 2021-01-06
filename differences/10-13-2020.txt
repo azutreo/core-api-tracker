@@ -1,0 +1,15 @@
+Changed Class Player
+	Added Property bool Player.flipOnMultiJump [ServerOnly]
+	Added Property bool Player.shouldFlipOnMultiJump [ServerOnly]
+Changed Class Player
+	Added MemberFunction void Player:Respawn(Vector3 position, Rotation rotation) [ServerOnly]
+	Added MemberFunction void Player:Respawn(table optionalParameters) [ServerOnly]
+Changed Class Player
+	Removed Property bool Player.flipOnMultiJump [ServerOnly]
+Changed Class Player
+	Removed MemberFunction void Player:Respawn(Vector3 position, Rotation rotation) [ServerOnly]
+
+Changed Namespace Storage
+	Added StaticFunction table Storage.GetSharedPlayerData(NetReference sharedStorageKey, Player player)
+	Added StaticFunction StorageResultCode, string Storage.SetSharedPlayerData(NetReference sharedStorageKey, Player player, table data)
+

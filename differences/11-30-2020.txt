@@ -1,0 +1,9 @@
+Added Class MergedModel
+	Added Property string MergedModel.type [ReadOnly]
+	Added MemberFunction bool MergedModel:IsA(string typeName)
+Changed Class Player
+	Added MemberFunction bool Player:IsBindingPressed(string bindingName)
+
+Changed Namespace Storage
+	Added StaticFunction integer Storage.SizeOfData(table data)
+

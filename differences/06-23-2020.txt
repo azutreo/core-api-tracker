@@ -1,0 +1,4 @@
+Changed Class UIProgressBar
+	Added MemberFunction Color UIProgressBar:GetBackgroundColor()
+	Added MemberFunction void UIProgressBar:SetBackgroundColor(Color color) [RequiresAuthority] [Dynamic]
+

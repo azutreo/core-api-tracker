@@ -1,0 +1,7 @@
+Changed Class NetReference
+	Added Property NetReferenceType NetReference.referenceType [ReadOnly]
+
+Added Enum NetReferenceType
+	Added Value LEADERBOARD: 1
+	Added Value SHARED_STORAGE: 2
+	Added Value UNKNOWN: 0

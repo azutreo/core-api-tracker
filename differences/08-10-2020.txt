@@ -1,0 +1,14 @@
+Changed Class Color
+	Added MemberFunction string Color:ToStandardHex()
+	Added MemberFunction string Color:ToLinearHex()
+	Added StaticFunction Color Color.FromStandardHex(string hexString)
+	Added StaticFunction Color Color.FromLinearHex(string hexString)
+Changed Class Object
+	Added Property table Object.serverUserData [ServerOnly] [ServerOnly]
+	Added Property table Object.clientUserData [ClientOnly] [ClientOnly]
+Changed Class Player
+	Added Property bool Player.flipOnMultiJump [ServerOnly]
+Changed Class Object
+	Removed Property table Object.serverUserData [ServerOnly]
+	Removed Property table Object.clientUserData [ClientOnly]
+
