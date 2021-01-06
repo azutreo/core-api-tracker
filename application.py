@@ -21,8 +21,8 @@ COMMIT_MESSAGE = "Update to Core API: %s"
 def PushToRepository(datetimeGMT):
 	try:
 		repository = Repository(PATH_OF_GIT_REPO)
-		repository.git.add(update=True)
-		repository.index.commit(COMMIT_MESSAGE.format(datetimeGMT))
+		repository.git.add(A=True)
+		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 		origin = repository.remote(name='origin')
 		origin.push()
 	except:
@@ -61,7 +61,6 @@ def Main():
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
-	print(isSame)
 	if isSame:
 		return
 	
@@ -116,7 +115,6 @@ def Main():
 	newJsonFile.write(newJsonText)
 	newJsonFile.close()
 
-	print("?")
 	PushToRepository(datetimeGMT)
 
 
