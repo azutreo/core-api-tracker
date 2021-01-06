@@ -77,7 +77,7 @@ def Main():
 		enumSequence.append(enumDifference + "\n")
 
 	# Current Time
-	datetimeGMT = strftime("%m-%d-%Y", gmtime())
+	datetimeGMT = strftime("%Y-%m-%d", gmtime())
 
 	# Begin the differences file
 	differencesTextFile = open("differences/" + datetimeGMT + ".txt", "w+")
