@@ -44,7 +44,7 @@ def Main():
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
-	if IsSame(pageContents):
+	if isSame:
 		return
 	
 	WriteDumpText(pageContents)
