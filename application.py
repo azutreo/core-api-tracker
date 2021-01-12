@@ -61,6 +61,7 @@ def Main():
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
+	print(isSame)
 	if isSame:
 		return
 	
