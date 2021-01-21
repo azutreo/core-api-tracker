@@ -1,0 +1,31 @@
+Changed Class Audio
+	Added Property number Audio.stopTime [RequiresAuthority] [Dynamic]
+Changed Class Equipment
+	Added Property string Equipment.socket [RequiresAuthority] [Dynamic]
+Added Class Hook
+	Added Property string Hook.type [ReadOnly]
+	Added MemberFunction HookListener Hook:Connect(function listener, void additionalParameters)
+	Added MemberFunction bool Hook:IsA(string typeName)
+Added Class HookListener
+	Added Property bool HookListener.isConnected [ReadOnly]
+	Added Property integer HookListener.priority
+	Added Property string HookListener.type [ReadOnly]
+	Added MemberFunction void HookListener:Disconnect()
+	Added MemberFunction bool HookListener:IsA(string typeName)
+Changed Class Object
+	Added Property table Object.serverUserData [ServerOnly]
+	Added Property table Object.clientUserData [ClientOnly]
+Changed Class Player
+	Added Property number Player.lookSensitivity [ClientOnly]
+Changed Class Player
+	Added MemberFunction number Player:GetPerkTimeRemaining(NetReference perkReference)
+Changed Class SmartAudio
+	Added Property number SmartAudio.stopTime [RequiresAuthority] [Dynamic]
+Changed Class Equipment
+	Removed Property string Equipment.socket [RequiresAuthority] [RequiresAuthority] [Dynamic]
+Changed Class Object
+	Removed Property table Object.serverUserData [ServerOnly] [ServerOnly]
+	Removed Property table Object.clientUserData [ClientOnly] [ClientOnly]
+Changed Class Player
+	Removed Property number Player.lookSensitivity [ClientOnly] [ClientOnly]
+
