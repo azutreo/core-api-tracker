@@ -15,7 +15,7 @@ from git import Repo
 
 
 CORE_API_URL = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
-REPOSITORY_URL = "https://github.com/azutreo/core-api-tracker.git"
+REPOSITORY_URL = "git@github.com:azutreo/core-api-tracker.git"
 
 CLONED_REPO_PATH = "cloned-repo"
 FILE_DUMP_TEXT = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.txt"
