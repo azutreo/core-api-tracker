@@ -6,7 +6,7 @@ import core_api_types.classes as CoreClasses
 import core_api_types.namespaces as CoreNamespaces
 import core_api_types.enums as CoreEnums
 
-from git import Repo as Repository
+from git import Repo
 
 
 PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
@@ -14,13 +14,14 @@ PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 
-PATH_OF_GIT_REPO = ".git"
+PATH_OF_GIT_REPO = "."
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
 def PushToRepository(datetimeGMT):
 	try:
-		repository = Repository(PATH_OF_GIT_REPO)
+		repository = Repo(PATH_OF_GIT_REPO)
+
 		origin = repository.remote(name='origin')
 
 		origin.pull()
