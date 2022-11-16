@@ -29,7 +29,6 @@ with repository.config_writer() as git_config:
 
 def PushToRepository(datetimeGMT):
 	try:
-
 		origin.pull()
 
 		repository.index.add(A=True)
