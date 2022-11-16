@@ -11,8 +11,8 @@ import core_api_types.enums as CoreEnums
 from git import Repo
 
 
-API_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
-REPOSITORY_LINK = "https://github.com/azutreo/core-api-tracker.git"
+CORE_API_URL = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
+REPOSITORY_URL = "https://github.com/azutreo/core-api-tracker.git"
 
 FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
@@ -20,7 +20,7 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo(pathlib.Path().absolute())
+repository = Repo.clone_from(REPOSITORY_URL, pathlib.Path().absolute())
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -62,15 +62,14 @@ def WriteDumpText(contents):
 	textDump.close()
 
 
-def GetJsonParsedData(url):
-	response = urlopen(url)
+def GetJsonParsedData(response):
 	data = response.read().decode("utf-8")
 	return json.loads(data), data
 
 
 def Main():
 	# See if the API has changed AT ALL
-	response = urlopen(API_LINK)
+	response = urlopen(CORE_API_URL)
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
@@ -80,7 +79,7 @@ def Main():
 	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
-	newJsonData, newJsonText = GetJsonParsedData(PAGE_LINK)
+	newJsonData, newJsonText = GetJsonParsedData(response)
 	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
