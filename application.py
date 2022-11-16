@@ -2,7 +2,7 @@ import json
 import pathlib
 import warnings
 import os
-import sys
+import shutil
 
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
@@ -18,13 +18,14 @@ CORE_API_URL = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 REPOSITORY_URL = "git@github.com:azutreo/core-api-tracker.git"
 
 CLONED_REPO_PATH = "cloned-repo"
-FILE_DUMP_TEXT = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.txt"
-FILE_DUMP_JSON = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.json"
+FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
+FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo.clone_from(REPOSITORY_URL, os.path.join(pathlib.Path().absolute(), CLONED_REPO_PATH))
+# repository = Repo.clone_from(REPOSITORY_URL, os.path.join(pathlib.Path().absolute(), CLONED_REPO_PATH))
+repository = Repo(str(pathlib.Path().absolute()))
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -111,12 +112,12 @@ def Main():
 	datetimeGMT = strftime("%Y-%m-%d", gmtime())
 
 	# Create differences file
-	differencesTextFile = open(CLONED_REPO_PATH + "/" + "differences/" + datetimeGMT + ".txt", "w+")
+	differencesTextFile = open("differences/" + datetimeGMT + ".txt", "w+")
 	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
 	differencesTextFile.close()
 
 	# Create a dump into api_dumps
-	newJsonFile = open(CLONED_REPO_PATH + "/" + "api_dumps/" + datetimeGMT + ".json", "w+")
+	newJsonFile = open("api_dumps/" + datetimeGMT + ".json", "w+")
 	newJsonFile.write(pageContents)
 	newJsonFile.close()
 
