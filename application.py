@@ -29,8 +29,8 @@ def PushToRepository(datetimeGMT):
 		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 
 		origin.push()
-	except:
-		print("Some error occured while pushing the code")
+	except Exception as e:
+		print(e)
 
 
 def GetFileContents(filename):
