@@ -34,7 +34,7 @@ with repository.config_writer() as git_config:
 
 def PushToRepository(datetimeGMT):
 	try:
-		repository.git.add(u=True)
+		repository.git.add(A=True)
 		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 
 		origin.pull()
