@@ -16,27 +16,18 @@ from git import Repo
 CORE_API_URL = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
 REPOSITORY_URL = "https://github.com/azutreo/core-api-tracker.git"
 
-FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
-FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
+CLONED_REPO_PATH = "cloned-repo"
+FILE_DUMP_TEXT = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.txt"
+FILE_DUMP_JSON = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.json"
 
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-def list_files(start_path):
-	for root, dirs, files in os.walk(start_path):
-		level = root.replace(start_path, '', 1).count(os.sep)
-		indent = ' ' * 4 * (level)
-		print('{}{}/'.format(indent, os.path.basename(root)))
-		sub_indent = ' ' * 4 * (level + 1)
-		for f in files:
-			print('{}{}'.format(sub_indent, f))
-
-
-list_files(str(pathlib.Path().absolute()))
-sys.stdout.flush()
-
-
-repository = Repo(str(pathlib.Path().absolute()))
+repository = Repo.clone_from(
+	REPOSITORY_URL, os.path.join(
+		pathlib.Path().absolute(), CLONED_REPO_PATH
+	)
+)
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -45,9 +36,6 @@ with repository.config_writer() as git_config:
 
 
 def PushToRepository(datetimeGMT):
-	if True:
-		return
-
 	try:
 		origin.pull()
 
@@ -91,8 +79,7 @@ def Main():
 	response = urlopen(CORE_API_URL)
 	pageContents = str(response.read())
 
-	isSame = IsSame(pageContents)
-	if isSame:
+	if IsSame(pageContents):
 		return
 
 	WriteDumpText(pageContents)
@@ -128,7 +115,8 @@ def Main():
 	datetimeGMT = strftime("%Y-%m-%d", gmtime())
 
 	# Begin the differences file
-	differencesTextFile = open("differences/" + datetimeGMT + ".txt", "w+")
+	differencesTextFile = open(
+		CLONED_REPO_PATH + "/" + "differences/" + datetimeGMT + ".txt", "w+")
 
 	# Write the sequences collected above
 	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
@@ -137,7 +125,8 @@ def Main():
 	differencesTextFile.close()
 
 	# Create a dump into api_dumps
-	newJsonFile = open("api_dumps/" + datetimeGMT + ".json", "w+")
+	newJsonFile = open(CLONED_REPO_PATH + "/" + "api_dumps/" +
+	                   datetimeGMT + ".json", "w+")
 	newJsonFile.write(newJsonText)
 	newJsonFile.close()
 
@@ -151,7 +140,6 @@ def Main():
 
 if __name__ == "__main__":
 	print("Running program; close to cancel (Ctrl + C if in console)")
-	print(pathlib.Path().absolute())
 
 	Main()
 	try:
