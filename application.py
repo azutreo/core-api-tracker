@@ -68,7 +68,7 @@ def WriteDumpText(contents):
 
 def GetJsonParsedData(content):
 	# data = content.decode("UTF-8")
-	return json.loads(content), content
+	return json.loads(content)
 
 
 def Main():
@@ -76,16 +76,13 @@ def Main():
 	response = urlopen(CORE_API_URL)
 	pageContents = response.read().decode("UTF-8")
 
-	print(pageContents)
-	sys.stdout.flush()
-
 	if IsSame(pageContents):
 		return
 
 	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
-	newJsonData, newJsonText = GetJsonParsedData(pageContents)
+	newJsonData = json.loads(pageContents)
 	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
@@ -127,12 +124,12 @@ def Main():
 	# Create a dump into api_dumps
 	newJsonFile = open(CLONED_REPO_PATH + "/" + "api_dumps/" +
 	                   datetimeGMT + ".json", "w+")
-	newJsonFile.write(newJsonText)
+	newJsonFile.write(pageContents)
 	newJsonFile.close()
 
 	# Set the "new" to be what was grabbed from online
 	newJsonFile = open(FILE_DUMP_JSON, "w+")
-	newJsonFile.write(newJsonText)
+	newJsonFile.write(pageContents)
 	newJsonFile.close()
 
 	PushToRepository(datetimeGMT)
