@@ -20,7 +20,7 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo.clone_from(REPOSITORY_URL, pathlib.Path().absolute())
+repository = Repo.init(pathlib.Path().absolute())
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
