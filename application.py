@@ -20,7 +20,7 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo(pathlib.Path().resolve())
+repository = Repo(pathlib.Path().absolute())
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -133,6 +133,7 @@ def Main():
 
 if __name__ == "__main__":
 	print("Running program; close to cancel (Ctrl + C if in console)")
+	print(pathlib.Path().absolute())
 
 	Main()
 	try:
