@@ -66,8 +66,8 @@ def WriteDumpText(contents):
 	textDump.close()
 
 
-def GetJsonParsedData(response):
-	data = response.read().decode("utf-8")
+def GetJsonParsedData(content):
+	data = content.decode("UTF-8")
 	return json.loads(data), data
 
 
@@ -85,7 +85,7 @@ def Main():
 	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
-	newJsonData, newJsonText = GetJsonParsedData(response)
+	newJsonData, newJsonText = GetJsonParsedData(pageContents)
 	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
 
