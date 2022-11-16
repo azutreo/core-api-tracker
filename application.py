@@ -1,7 +1,8 @@
 import json
 import pathlib
 import warnings
-import os, sys
+import os
+import sys
 
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
@@ -23,11 +24,7 @@ FILE_DUMP_JSON = CLONED_REPO_PATH + "/" + "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo.clone_from(
-	REPOSITORY_URL, os.path.join(
-		pathlib.Path().absolute(), CLONED_REPO_PATH
-	)
-)
+repository = Repo.clone_from(REPOSITORY_URL, os.path.join(pathlib.Path().absolute(), CLONED_REPO_PATH))
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -71,6 +68,8 @@ def WriteDumpText(contents):
 
 def GetJsonParsedData(response):
 	data = response.read().decode("utf-8")
+	print(data)
+	sys.stdout.flush()
 	return json.loads(data), data
 
 
@@ -85,8 +84,6 @@ def Main():
 	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
-	print(response)
-	sys.stdout.flush()
 	newJsonData, newJsonText = GetJsonParsedData(response)
 	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
