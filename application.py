@@ -85,6 +85,8 @@ def Main():
 	WriteDumpText(pageContents)
 
 	# Grab the old/new json required for comparisons
+	print(response)
+	sys.stdout.flush()
 	newJsonData, newJsonText = GetJsonParsedData(response)
 	oldJsonText = GetFileContents(FILE_DUMP_JSON)
 	oldJsonData = json.loads(oldJsonText)
