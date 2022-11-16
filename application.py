@@ -67,8 +67,8 @@ def WriteDumpText(contents):
 
 
 def GetJsonParsedData(content):
-	data = content.decode("UTF-8")
-	return json.loads(data), data
+	# data = content.decode("UTF-8")
+	return json.loads(content), content
 
 
 def Main():
