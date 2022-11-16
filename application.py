@@ -24,7 +24,7 @@ COMMIT_MESSAGE = "Update to Core API: %s"
 
 def list_files(start_path):
 	for root, dirs, files in os.walk(start_path):
-		level = root.replace(str(start_path), '', 1).count(os.sep)
+		level = root.replace(start_path, '', 1).count(os.sep)
 		indent = ' ' * 4 * (level)
 		print('{}{}/'.format(indent, os.path.basename(root)))
 		sub_indent = ' ' * 4 * (level + 1)
@@ -32,7 +32,7 @@ def list_files(start_path):
 			print('{}{}'.format(sub_indent, f))
 
 
-list_files(pathlib.Path().absolute())
+list_files(str(pathlib.Path().absolute()))
 sys.stdout.flush()
 
 
