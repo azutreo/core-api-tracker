@@ -11,7 +11,8 @@ import core_api_types.enums as CoreEnums
 from git import Repo
 
 
-PAGE_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
+API_LINK = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
+REPOSITORY_LINK = "https://github.com/azutreo/core-api-tracker.git"
 
 FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
@@ -19,7 +20,7 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo(os.getcwd())
+repository = Repo.clone_from(REPOSITORY_LINK)
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
@@ -69,7 +70,7 @@ def GetJsonParsedData(url):
 
 def Main():
 	# See if the API has changed AT ALL
-	response = urlopen(PAGE_LINK)
+	response = urlopen(API_LINK)
 	pageContents = str(response.read())
 
 	isSame = IsSame(pageContents)
