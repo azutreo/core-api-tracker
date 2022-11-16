@@ -34,11 +34,10 @@ with repository.config_writer() as git_config:
 
 def PushToRepository(datetimeGMT):
 	try:
-		origin.pull()
-
 		repository.git.add(u=True)
 		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 
+		origin.pull()
 		origin.push()
 	except Exception as e:
 		warnings.warn(e, UserWarning)
