@@ -110,19 +110,13 @@ def Main():
 	# Current Time
 	datetimeGMT = strftime("%Y-%m-%d", gmtime())
 
-	# Begin the differences file
-	differencesTextFile = open(
-		CLONED_REPO_PATH + "/" + "differences/" + datetimeGMT + ".txt", "w+")
-
-	# Write the sequences collected above
+	# Create differences file
+	differencesTextFile = open(CLONED_REPO_PATH + "/" + "differences/" + datetimeGMT + ".txt", "w+")
 	differencesTextFile.writelines(classSequence + namespaceSequence + enumSequence)
-
-	# Close the differences text file
 	differencesTextFile.close()
 
 	# Create a dump into api_dumps
-	newJsonFile = open(CLONED_REPO_PATH + "/" + "api_dumps/" +
-	                   datetimeGMT + ".json", "w+")
+	newJsonFile = open(CLONED_REPO_PATH + "/" + "api_dumps/" + datetimeGMT + ".json", "w+")
 	newJsonFile.write(pageContents)
 	newJsonFile.close()
 
