@@ -74,7 +74,7 @@ def GetJsonParsedData(content):
 def Main():
 	# See if the API has changed AT ALL
 	response = urlopen(CORE_API_URL)
-	pageContents = str(response.read())
+	pageContents = response.read().decode("UTF-8")
 
 	print(pageContents)
 	sys.stdout.flush()
