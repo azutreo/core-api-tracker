@@ -36,7 +36,7 @@ list_files(str(pathlib.Path().absolute()))
 sys.stdout.flush()
 
 
-repository = Repo(pathlib.Path().absolute())
+repository = Repo(str(pathlib.Path().absolute()))
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
