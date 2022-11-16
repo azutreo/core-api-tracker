@@ -20,6 +20,8 @@ COMMIT_MESSAGE = "Update to Core API: %s"
 
 
 repository = Repo(PATH_OF_GIT_REPO)
+origin = repository.remote(name='origin')
+
 with repository.config_writer() as git_config:
 	git_config.set_value('user', 'email', 'nicholas.w.foreman@outlook.com')
 	git_config.set_value('user', 'name', 'azutreo')
@@ -27,7 +29,6 @@ with repository.config_writer() as git_config:
 
 def PushToRepository(datetimeGMT):
 	try:
-		origin = repository.remote(name='origin')
 
 		origin.pull()
 
