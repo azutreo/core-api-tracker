@@ -1,6 +1,7 @@
 import json
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
+import warnings
 
 import core_api_types.classes as CoreClasses
 import core_api_types.namespaces as CoreNamespaces
@@ -31,7 +32,9 @@ def PushToRepository(datetimeGMT):
 
 		origin.push()
 	except Exception as e:
-		print(e)
+		warnings.warn(e)
+	else:
+		print("Successfully pushed changes: " + datetimeGMT)
 
 
 def GetFileContents(filename):
