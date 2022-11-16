@@ -36,7 +36,7 @@ def PushToRepository(datetimeGMT):
 	try:
 		origin.pull()
 
-		repository.index.add(A=True)
+		repository.git.add(u=True)
 		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 
 		origin.push()
