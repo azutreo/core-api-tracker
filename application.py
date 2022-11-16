@@ -68,8 +68,6 @@ def WriteDumpText(contents):
 
 def GetJsonParsedData(response):
 	data = response.read().decode("utf-8")
-	print(data)
-	sys.stdout.flush()
 	return json.loads(data), data
 
 
@@ -77,6 +75,9 @@ def Main():
 	# See if the API has changed AT ALL
 	response = urlopen(CORE_API_URL)
 	pageContents = str(response.read())
+
+	print(pageContents)
+	sys.stdout.flush()
 
 	if IsSame(pageContents):
 		return
