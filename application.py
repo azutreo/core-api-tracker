@@ -19,20 +19,24 @@ PATH_OF_GIT_REPO = "."
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
+repository = Repo(PATH_OF_GIT_REPO)
+with repository.config_writer() as git_config:
+	git_config.set_value('user', 'email', 'nicholas.w.foreman@outlook.com')
+	git_config.set_value('user', 'name', 'azutreo')
+
+
 def PushToRepository(datetimeGMT):
 	try:
-		repository = Repo(PATH_OF_GIT_REPO)
-
 		origin = repository.remote(name='origin')
 
 		origin.pull()
 
-		repository.git.add(A=True)
+		repository.index.add(A=True)
 		repository.index.commit(COMMIT_MESSAGE % datetimeGMT)
 
 		origin.push()
 	except Exception as e:
-		warnings.warn(e)
+		warnings.warn(e, UserWarning)
 	else:
 		print("Successfully pushed changes: " + datetimeGMT)
 
