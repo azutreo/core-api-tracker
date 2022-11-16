@@ -2,7 +2,7 @@ import json
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
 import warnings
-import os
+import pathlib
 
 import core_api_types.classes as CoreClasses
 import core_api_types.namespaces as CoreNamespaces
@@ -20,7 +20,7 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo.clone_from(REPOSITORY_LINK)
+repository = Repo(pathlib.Path().resolve())
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
