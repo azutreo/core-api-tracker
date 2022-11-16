@@ -2,6 +2,7 @@ import json
 from time import strftime, gmtime, sleep
 from urllib.request import urlopen
 import warnings
+import os
 import pathlib
 
 import core_api_types.classes as CoreClasses
@@ -20,7 +21,20 @@ FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-repository = Repo.init(pathlib.Path().absolute())
+def list_files(startpath):
+	for root, dirs, files in os.walk(startpath):
+		level = root.replace(startpath, '').count(os.sep)
+		indent = ' ' * 4 * (level)
+		print('{}{}/'.format(indent, os.path.basename(root)))
+		subindent = ' ' * 4 * (level + 1)
+		for f in files:
+			print('{}{}'.format(subindent, f))
+
+
+list_files(pathlib.Path().absolute())
+
+
+repository = Repo(pathlib.Path().absolute())
 origin = repository.remote(name='origin')
 
 with repository.config_writer() as git_config:
