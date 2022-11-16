@@ -15,16 +15,13 @@ from git import Repo
 
 
 CORE_API_URL = "https://docs.coregames.com/assets/api/CoreLuaAPI.json"
-REPOSITORY_URL = "git@github.com:azutreo/core-api-tracker.git"
 
-CLONED_REPO_PATH = "cloned-repo"
 FILE_DUMP_TEXT = "internal_dumps/core_api_dump.txt"
 FILE_DUMP_JSON = "internal_dumps/core_api_dump.json"
 
 COMMIT_MESSAGE = "Update to Core API: %s"
 
 
-# repository = Repo.clone_from(REPOSITORY_URL, os.path.join(pathlib.Path().absolute(), CLONED_REPO_PATH))
 repository = Repo(str(pathlib.Path().absolute()))
 origin = repository.remote(name='origin')
 

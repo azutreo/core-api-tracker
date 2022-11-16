@@ -10,9 +10,9 @@ def ChangeNamespace(differences: list, namespaceName: str):
 	differences.append("Changed Namespace " + namespaceName)
 
 def AddStaticFunction(differences: list, returnType: str, namespaceName: str, functionName: str, parameterFormat: str):
-	differences.append("\tAdded " + "StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
+	differences.append("\tAdded StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
 def RemoveStaticFunction(differences: list, returnType: str, namespaceName: str, functionName: str, parameterFormat: str):
-	differences.append("\tRemoved " + "StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
+	differences.append("\tRemoved StaticFunction " + returnType + " " + namespaceName + "." + functionName + parameterFormat)
 
 
 def GetNamespaceByName(namespaces: list, namespaceName: str):
@@ -30,7 +30,7 @@ def GetStaticFunctionByName(namespace: dict, functionName: str):
 def AddSignature(differences, signature, namespaceName: str, functionName: str, addedOrRemoved: bool):
 	parameterFormat = core_functions.GetParameterFormat(signature, "(", ")", False)
 	returnType = core_functions.GetReturnType(signature)
-	
+
 	if addedOrRemoved:
 		AddStaticFunction(differences, returnType, namespaceName, functionName, parameterFormat)
 	else:
@@ -51,36 +51,36 @@ def AddAllNamespaceDifferences(differences: list, namespace: dict, addedOrRemove
 		AddNamespace(differences, namespace["Name"])
 	else:
 		RemoveNamespace(differences, namespace["Name"])
-	
+
 	AddAllStaticFunctions(differences, namespace, addedOrRemoved)
 
 
 def CompareToOtherList(differences: list, namespace: dict, otherList: list, addedOrRemoved: bool):
 	if not otherList["Namespaces"]:
 		return AddAllNamespaceDifferences(differences, namespace, addedOrRemoved)
-	
+
 	otherNamespace = GetNamespaceByName(otherList, namespace["Name"])
 	if otherNamespace:
 		wasChanged = False
-		
+
 		for staticFunction in namespace["StaticFunctions"]:
 			otherStaticFunction = GetStaticFunctionByName(otherNamespace, staticFunction["Name"])
-			
+
 			if otherStaticFunction:
 				for signature in staticFunction["Signatures"]:
 					if signature in otherStaticFunction["Signatures"]:
 						continue
-					
+
 					if not wasChanged:
 						wasChanged = True
 						ChangeNamespace(differences, namespace["Name"])
-					
+
 					AddSignature(differences, signature, namespace["Name"], staticFunction["Name"], addedOrRemoved)
 			else:
 				if not wasChanged:
 					wasChanged = True
 					ChangeNamespace(differences, namespace["Name"])
-				
+
 				AddAllSignatures(differences, staticFunction["Signatures"], namespace["Name"], staticFunction["Name"], addedOrRemoved)
 	else:
 		AddAllNamespaceDifferences(differences, namespace, addedOrRemoved)
@@ -93,8 +93,8 @@ def CompareLists(differences: list, list1: list, list2: list, addedOrRemoved: bo
 
 def GetDifferences(list1: list, list2: list):
 	differences = []
-	
+
 	CompareLists(differences, list1, list2, True)
 	CompareLists(differences, list2, list1, False)
-	
+
 	return differences

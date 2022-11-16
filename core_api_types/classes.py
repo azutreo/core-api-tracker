@@ -12,34 +12,34 @@ def ChangeClass(differences: list, className: str):
 
 
 def AddStaticFunction(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tAdded " + "StaticFunction " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded StaticFunction " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 def RemoveStaticFunction(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tRemoved " + "StaticFunction " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved StaticFunction " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 
 def AddMemberFunction(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tAdded " + "MemberFunction " + returnType + " " + className + ":" + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded MemberFunction " + returnType + " " + className + ":" + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 def RemoveMemberFunction(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tRemoved " + "MemberFunction " + returnType + " " + className + ":" + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved MemberFunction " + returnType + " " + className + ":" + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 
 def AddConstructor(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tAdded " + "Constructor " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded Constructor " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 def RemoveConstructor(differences: list, returnType: str, className: str, functionName: str, parameterFormat: str, parent: dict):
-	differences.append("\tRemoved " + "Constructor " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved Constructor " + returnType + " " + className + "." + functionName + parameterFormat + core_tags.GetTagsFormat(parent))
 
 def AddProperty(differences: list, className: str, propertyType: str, propertyName: str, parent: dict):
-	differences.append("\tAdded " + "Property " + propertyType + " " + className + "." + propertyName + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded Property " + propertyType + " " + className + "." + propertyName + core_tags.GetTagsFormat(parent))
 def RemoveProperty(differences: list, className: str, propertyType: str, propertyName: str, parent: dict):
-	differences.append("\tRemoved " + "Property " + propertyType + " " + className + "." + propertyName + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved Property " + propertyType + " " + className + "." + propertyName + core_tags.GetTagsFormat(parent))
 
 def AddConstant(differences: list, className: str, constantType: str, constantName: str, parent: dict):
-	differences.append("\tAdded " + "Constant " + constantType + " " + className + "." + constantName + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded Constant " + constantType + " " + className + "." + constantName + core_tags.GetTagsFormat(parent))
 def RemoveConstant(differences: list, className: str, constantType: str, constantName: str, parent: dict):
-	differences.append("\tRemoved " + "Constant " + constantType + " " + className + "." + constantName + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved Constant " + constantType + " " + className + "." + constantName + core_tags.GetTagsFormat(parent))
 
 def AddEvent(differences: list, className: str, eventName: str, parameterFormat: str, parent: dict):
-	differences.append("\tAdded " + "Event " + className + "." + eventName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tAdded Event " + className + "." + eventName + parameterFormat + core_tags.GetTagsFormat(parent))
 def RemoveEvent(differences: list, className: str, eventName: str, parameterFormat: str, parent: dict):
-	differences.append("\tRemoved " + "Event " + className + "." + eventName + parameterFormat + core_tags.GetTagsFormat(parent))
+	differences.append("\tRemoved Event " + className + "." + eventName + parameterFormat + core_tags.GetTagsFormat(parent))
 
 def GetClassByName(classes: list, className: str):
 	for _class in classes["Classes"]:
@@ -58,7 +58,7 @@ def GetMemberByName(_class: dict, name: str, _type: str):
 def AddSignature(differences: list, signature: dict, className: str, functionName: str, functionType: int, addedOrRemoved: bool, function: dict):
 	parameterFormat = core_functions.GetParameterFormat(signature, "(", ")", False)
 	returnType = core_functions.GetReturnType(signature)
-	
+
 	if addedOrRemoved:
 		if functionType == 0:
 			AddMemberFunction(differences, returnType, className, functionName, parameterFormat, function)
@@ -142,7 +142,7 @@ def AddAllClassDifferences(differences: list, _class: dict, addedOrRemoved: bool
 		AddClass(differences, _class["Name"])
 	else:
 		RemoveClass(differences, _class["Name"])
-	
+
 	AddAllProperties(differences, _class, addedOrRemoved)
 	AddAllEvents(differences, _class, addedOrRemoved)
 	AddAllMemberFunctions(differences, _class, addedOrRemoved)
@@ -160,24 +160,24 @@ def CompareFunctions(differences: list, functionList: list, _class: dict, otherC
 			otherFunction = GetMemberByName(otherClass, function["Name"], "StaticFunctions")
 		elif functionType == 2:
 			otherFunction = GetMemberByName(otherClass, function["Name"], "Constructors")
-		
+
 		if otherFunction:
 			for signature in function["Signatures"]:
 				if signature in otherFunction["Signatures"]:
 					continue
-				
+
 				if not wasChanged:
 					wasChanged = True
 					ChangeClass(differences, _class["Name"])
-				
+
 				AddSignature(differences, signature, _class["Name"], function["Name"], functionType, addedOrRemoved, function)
 		else:
 			if not wasChanged:
 				wasChanged = True
 				ChangeClass(differences, _class["Name"])
-			
+
 			AddAllSignatures(functionType, differences, function["Signatures"], _class["Name"], function["Name"], addedOrRemoved, function)
-	
+
 	return wasChanged
 
 
@@ -185,11 +185,11 @@ def CompareEvents(differences: list, eventList: list, _class: dict, otherClass: 
 	for event in eventList:
 		if ("Events" in otherClass) and (event in otherClass["Events"]):
 			continue
-		
+
 		if not wasChanged:
 			wasChanged = True
 			ChangeClass(differences, _class["Name"])
-		
+
 		AddEvent_(differences, event, _class["Name"], event["Name"], addedOrRemoved)
 
 
@@ -199,12 +199,12 @@ def CompareProperties(differences: list, properties: list, _class: dict, otherCl
 			if not wasChanged:
 				wasChanged = True
 				ChangeClass(differences, _class["Name"])
-			
+
 			if addedOrRemoved:
 				AddProperty(differences, _class["Name"], property["Type"], property["Name"], property)
 			else:
 				RemoveProperty(differences, _class["Name"], property["Type"], property["Name"], property)
-	
+
 	return wasChanged
 
 
@@ -214,23 +214,23 @@ def CompareConstants(differences: list, constants: list, _class: dict, otherClas
 			if not wasChanged:
 				wasChanged = True
 				ChangeClass(differences, _class["Name"])
-			
+
 			if addedOrRemoved:
 				AddConstant(differences, _class["Name"], constant["Type"], constant["Name"], constant)
 			else:
 				RemoveConstant(differences, _class["Name"], constant["Type"], constant["Name"], constant)
-	
+
 	return wasChanged
 
 
 def CompareToOtherList(differences: list, _class: dict, otherList: list, addedOrRemoved: bool):
 	if not otherList["Classes"]:
 		return AddAllClassDifferences(differences, _class, addedOrRemoved)
-	
+
 	otherClass = GetClassByName(otherList, _class["Name"])
 	if otherClass:
 		wasChanged = False
-		
+
 		if "Properties" in _class:
 			wasChanged = CompareProperties(differences, _class["Properties"], _class, otherClass, addedOrRemoved, wasChanged)
 		if "Events" in _class:
@@ -254,8 +254,8 @@ def CompareLists(differences: list, list1: list, list2: list, addedOrRemoved: bo
 
 def GetDifferences(list1: list, list2: list):
 	differences = []
-	
+
 	CompareLists(differences, list1, list2, True)
 	CompareLists(differences, list2, list1, False)
-	
+
 	return differences
